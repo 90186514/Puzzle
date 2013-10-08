@@ -101,6 +101,10 @@
 - (IBAction)btnMoreTap:(id)sender
 {
     CategaryViewController *cate = [[CategaryViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:cate];
+    [self presentModalViewController:nav animated:YES];
+    [cate autorelease];
+    [nav autorelease];
 }
 
 

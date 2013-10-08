@@ -50,6 +50,12 @@
 		B24D007417D9B0D000EA1BC6 /* gameover.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B24D007217D9B0D000EA1BC6 /* gameover.mp3 */; };
 		B24D007517D9B0D000EA1BC6 /* select.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B24D007317D9B0D000EA1BC6 /* select.mp3 */; };
 		B24D007717D9C37500EA1BC6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B24D007617D9C37500EA1BC6 /* AVFoundation.framework */; };
+		B25543A718040694009536FD /* DownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25543A518040694009536FD /* DownloadViewController.m */; };
+		B25543A818040694009536FD /* DownloadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B25543A618040694009536FD /* DownloadViewController.xib */; };
+		B25543AA180406AE009536FD /* DownloadViewController_pad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B25543A9180406AE009536FD /* DownloadViewController_pad.xib */; };
+		B25543AD18040D7E009536FD /* DownloadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B25543AC18040D7E009536FD /* DownloadCell.m */; };
+		B25543AF18040DAE009536FD /* DownloadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B25543AE18040DAE009536FD /* DownloadCell.xib */; };
+		B25543B118040DB9009536FD /* DownloadCell_pad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B25543B018040DB9009536FD /* DownloadCell_pad.xib */; };
 		B26060D817D6D45D003FE40F /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B26060D717D6D45D003FE40F /* libGoogleAdMobAds.a */; };
 		B26060DA17D6D5BF003FE40F /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26060D917D6D5BF003FE40F /* Twitter.framework */; };
 		B26060DC17D6D5C9003FE40F /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26060DB17D6D5C9003FE40F /* Accounts.framework */; };
@@ -161,6 +167,14 @@
 		B24D007217D9B0D000EA1BC6 /* gameover.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gameover.mp3; sourceTree = "<group>"; };
 		B24D007317D9B0D000EA1BC6 /* select.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = select.mp3; sourceTree = "<group>"; };
 		B24D007617D9C37500EA1BC6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B25543A418040694009536FD /* DownloadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadViewController.h; sourceTree = "<group>"; };
+		B25543A518040694009536FD /* DownloadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadViewController.m; sourceTree = "<group>"; };
+		B25543A618040694009536FD /* DownloadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadViewController.xib; sourceTree = "<group>"; };
+		B25543A9180406AE009536FD /* DownloadViewController_pad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadViewController_pad.xib; sourceTree = "<group>"; };
+		B25543AB18040D7E009536FD /* DownloadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadCell.h; sourceTree = "<group>"; };
+		B25543AC18040D7E009536FD /* DownloadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadCell.m; sourceTree = "<group>"; };
+		B25543AE18040DAE009536FD /* DownloadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadCell.xib; sourceTree = "<group>"; };
+		B25543B018040DB9009536FD /* DownloadCell_pad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadCell_pad.xib; sourceTree = "<group>"; };
 		B26060CE17D6D45D003FE40F /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
 		B26060CF17D6D45D003FE40F /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
 		B26060D017D6D45D003FE40F /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
@@ -422,6 +436,14 @@
 				236051AC1802B91000A50BCB /* CategaryViewController.m */,
 				236051AD1802B91000A50BCB /* CategaryViewController.xib */,
 				236051B01802B95500A50BCB /* CategaryViewController_pad.xib */,
+				B25543A418040694009536FD /* DownloadViewController.h */,
+				B25543A518040694009536FD /* DownloadViewController.m */,
+				B25543A618040694009536FD /* DownloadViewController.xib */,
+				B25543A9180406AE009536FD /* DownloadViewController_pad.xib */,
+				B25543AB18040D7E009536FD /* DownloadCell.h */,
+				B25543AC18040D7E009536FD /* DownloadCell.m */,
+				B25543AE18040DAE009536FD /* DownloadCell.xib */,
+				B25543B018040DB9009536FD /* DownloadCell_pad.xib */,
 			);
 			path = Puzzle;
 			sourceTree = "<group>";
@@ -551,6 +573,10 @@
 				236051AA180260AF00A50BCB /* free in Resources */,
 				236051AF1802B91000A50BCB /* CategaryViewController.xib in Resources */,
 				236051B11802B95500A50BCB /* CategaryViewController_pad.xib in Resources */,
+				B25543A818040694009536FD /* DownloadViewController.xib in Resources */,
+				B25543AA180406AE009536FD /* DownloadViewController_pad.xib in Resources */,
+				B25543AF18040DAE009536FD /* DownloadCell.xib in Resources */,
+				B25543B118040DB9009536FD /* DownloadCell_pad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +614,8 @@
 				236051CD1802BFAB00A50BCB /* ASIInputStream.m in Sources */,
 				236051CE1802BFAB00A50BCB /* ASINetworkQueue.m in Sources */,
 				236051D11802BFEA00A50BCB /* Reachability.m in Sources */,
+				B25543A718040694009536FD /* DownloadViewController.m in Sources */,
+				B25543AD18040D7E009536FD /* DownloadCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

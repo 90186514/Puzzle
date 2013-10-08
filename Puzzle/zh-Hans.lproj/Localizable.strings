@@ -16,6 +16,10 @@
 "Save & Play" = "保存&游戏";
 "Cancel" = "取消";
 "restart" = "您想重新选择图片并开始游戏么？";
+"Retry" = "重试";
 
 "buyDisable" = "购买失败，用户禁止内购";
 "buyFail" = "购买失败，无法获取商品信息";
+"Categary" = "图片分类";
+"NetworkErrorTitle" = "加载失败";
+"NetworkErrorMessage" = "网络不给力啊~请重新尝试!";

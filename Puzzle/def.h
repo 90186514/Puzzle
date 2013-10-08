@@ -22,5 +22,5 @@
 
 #define isPad (UIUserInterfaceIdiomPad == UI_USER_INTERFACE_IDIOM())
 
-#define domin @"www.hituhao.com"
+#define domin @"http://www.hituhao.com"
 #endif

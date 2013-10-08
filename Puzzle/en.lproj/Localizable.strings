@@ -16,6 +16,10 @@
 "Save & Play" = "Save & Play";
 "Cancel" = "Cancel";
 "restart" = "Do you want replay with a new picture?";
+"Retry" = "Retry";
 
 "buyDisable" = "User forbid IAP";
 "buyFail" = "Faild, cannot get product infomation";
+"Categary" = "Categary";
+"NetworkErrorTitle" = "Network Error";
+"NetworkErrorMessage" = "Cannot connect internet!";
