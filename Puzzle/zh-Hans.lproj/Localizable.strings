@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  Puzzle
+
+  Created by Kira on 9/2/13.
+  Copyright (c) 2013 Kira. All rights reserved.
+*/
+
+"test" = "简中";
+"minStepTitle" = "最优成绩";
+"curStepTitle" = "当前关卡";
+"levelSuccess" = "恭喜过关~";
+"levelFaild" = "闯关失败，倒退两关~";
+"Play" = "游戏";
+"Save" = "保存";
+"Save & Play" = "保存&游戏";
+"Cancel" = "取消";
+"restart" = "您想重新选择图片并开始游戏么？";
+
+"buyDisable" = "购买失败，用户禁止内购";
+"buyFail" = "购买失败，无法获取商品信息";
