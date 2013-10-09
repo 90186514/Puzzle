@@ -17,11 +17,13 @@
 @property (nonatomic, retain) NSMutableArray *localTileImagesArray;
 @property (nonatomic, retain) NSMutableArray *serverTileImagesArray;
 
+
 + (NSMutableArray *)AllPlayImagePaths;      //返回本地所有可游戏的图片路径大全
 
 + (ImageManager *)shareInterface;
 
 - (void)partAllTileList:(NSArray *)allList;
 - (void)loadTiltImages;
+
 
 @end

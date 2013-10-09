@@ -7,7 +7,7 @@
 //
 
 #import "ImageManager.h"
-
+#import "def.h"
 static ImageManager *userInterface = nil;
 
 @implementation ImageManager
@@ -84,9 +84,43 @@ static ImageManager *userInterface = nil;
 
 - (void)loadTiltImages
 {
+    //init tile queue
+    ASINetworkQueue *tileQueue = [[ASINetworkQueue alloc] init];
+    tileQueue.delegate = self;
+    [tileQueue setRequestDidFailSelector:@selector(tileRequestDidFinish:)];
+    [tileQueue setRequestDidFailSelector:@selector(tileRequestDidFail:)];
+    [tileQueue setQueueDidFinishSelector:@selector(tileQueueDidFinish:)];
+    
     for (int i = 0; i < [self.serverTileImagesArray count]; i ++) {
         //Download the tile image
+        NSDictionary *tileItem = [self.serverTileImagesArray objectAtIndex:i];
+        NSString *name = [tileItem objectForKey:@"path"];
+        NSString *tileUrl = [NSString stringWithFormat:@"%@/download.php?filename=%@_tile.png", domin, name];
+        ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:tileUrl]];
+        NSString *desPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_tile.png", name]];
+        [request setDownloadDestinationPath:desPath];
+        [request setUserInfo:tileItem];
     }
+    [tileQueue go];
+}
+
+
+#pragma mark - Tile Network Queue Delegate
+
+- (void)tileRequestDidFail:(ASIHTTPRequest *)request
+{
+    NSLog(@"%s -> %@", __FUNCTION__, [request userInfo]);
+}
+
+- (void)tileRequestDidFinish:(ASIHTTPRequest *)request
+{
+}
+
+- (void)tileQueueDidFinish:(ASINetworkQueue *)queue
+{
+    [queue reset];
+    [queue cancelAllOperations];
+    [queue release];
 }
 
 @end
