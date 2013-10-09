@@ -15,7 +15,7 @@
 
 #define kCountActiveKey @"kCountActiveKey"
 
-#define kCountActiveAlertWouldShow 10
+#define kCountActiveAlertWouldShow 1
 
 @implementation AppDelegate (ReviewAlert)
 
@@ -38,7 +38,7 @@
 //        [act showInView:self.window];
 //        [act release];
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Review And Share" message:@"Your support is my biggest power!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Review", @"Share on Weibo", @"Share on Twitter", nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Review And Share" message:@"Your support is my biggest power!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Review", @"Share on Weibo", @"Share on Twitter", @"Buy It", nil];
         [alert show];
         [alert release];
     }
@@ -67,9 +67,9 @@
     }
     else if (buttonIndex == 3) {
         [WeiboShareManager LoginAndShareTwitter];
+    } else if (buttonIndex == 4) {
+        [IOSHelper buyNoIad];
     }
 }
-
-
 
 @end

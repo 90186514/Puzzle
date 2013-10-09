@@ -20,7 +20,7 @@
 - (id)init
 {
 	self = [super init];
-	[self setShouldCancelAllRequestsOnFailure:YES];
+	[self setShouldCancelAllRequestsOnFailure:NO];
 	[self setMaxConcurrentOperationCount:4];
 	[self setSuspended:YES];
 	

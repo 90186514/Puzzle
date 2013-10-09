@@ -9,5 +9,19 @@
 #import <UIKit/UIKit.h>
 
 @interface DownloadCell : UITableViewCell
+{
+    BOOL hasFinishLoad;
+}
+
+@property (nonatomic, retain) IBOutlet UIImageView * itemImageView;
+@property (nonatomic, retain) IBOutlet UIButton *donwButton;
+@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *loadingView;
+
+- (void)showLoading;
+- (void)hideLoading;
+
+- (void)resetViewStatus;
+
+- (void)finishLoadImage:(UIImage *)img;
 
 @end

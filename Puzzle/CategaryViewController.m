@@ -36,7 +36,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = NSLocalizedString(@"Categary", nil);
-    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(btnBackTap:)] autorelease];
+    
+    UIBarButtonItem *leftItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(btnBackTap:)] autorelease];
+    leftItem.tintColor = [UIColor purpleColor];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    
+    if (isPad) {
+        UIImageView *back = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"GreenBack.jpg"]];
+        back.frame = self.view.bounds;
+        [self.view insertSubview:[back autorelease] atIndex:0];
+    } else {
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"GreenBack.jpg"]];
+    }
 }
 
 - (void)btnBackTap:(id)sender

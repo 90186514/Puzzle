@@ -24,6 +24,7 @@
     if (self) {
         // Custom initialization
         self.photoListArray = list;
+        [[ImageManager shareInterface] loadTiltImages:list];
     }
     return self;
 }
@@ -32,6 +33,21 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    UIBarButtonItem *backBtn = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back", nil) style:UIBarButtonItemStylePlain target:self action:@selector(btnBackTap:)];
+    backBtn.tintColor = [UIColor purpleColor];
+    self.navigationItem.leftBarButtonItem = [backBtn autorelease];
+    if (isPad) {
+        UIImageView *back = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"GreenBack.jpg"]];
+        back.frame = self.view.bounds;
+        [self.view insertSubview:[back autorelease] atIndex:0];
+    } else {
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"GreenBack.jpg"]];
+    }
+}
+
+- (void)btnBackTap:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,15 +75,21 @@
     return 1;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60.0;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *identifier = @"downloadCell";
-    DownloadCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    static NSString *identifierPad = @"downloadCell_pad";
+    DownloadCell *cell = [tableView dequeueReusableCellWithIdentifier: ((isPad) ? identifierPad : identifier)];
     if (!cell) {
-        NSString *cellNibName = (isPad) ? @"DownloadCell" : @"DownloadCell_pad";
+        NSString *cellNibName = (isPad) ? @"DownloadCell_pad" : @"DownloadCell";
         cell = [[[NSBundle mainBundle] loadNibNamed:cellNibName owner:self options:nil] objectAtIndex:0];
     }
-    
+    [cell resetViewStatus];
     return cell;
 }
 

@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12E55</string>
+		<string key="IBDocument.SystemVersion">12F37</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
 		<string key="IBDocument.AppKitVersion">1187.39</string>
 		<string key="IBDocument.HIToolboxVersion">626.00</string>
@@ -212,7 +212,7 @@
 					<object class="IBUIButton" id="634708771">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{89, 375}, {60, 20}}</string>
+						<string key="NSFrame">{{93, 375}, {60, 20}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="383997674"/>
@@ -228,9 +228,9 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="5731584"/>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">btnPlay@2x.png</string>
+							<string key="NSResourceName">btnBuy@2x.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">2</int>
@@ -497,20 +497,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">ViewController</string>
 					<string key="superclassName">UIViewController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="btnBuyTap:">id</string>
-						<string key="btnSelectImageTap:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="btnBuyTap:">
-							<string key="name">btnBuyTap:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="btnSelectImageTap:">
-							<string key="name">btnSelectImageTap:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="btnBut">UIButton</string>
 						<string key="btnSelectImage">UIButton</string>
@@ -519,6 +505,7 @@
 						<string key="curStepTitle">UILabel</string>
 						<string key="minStepLabel">UILabel</string>
 						<string key="minStepTitle">UILabel</string>
+						<string key="passLabelPad">UILabel</string>
 						<string key="progressView">UIProgressView</string>
 						<string key="puzzleView">PuzzleView</string>
 					</dictionary>
@@ -551,6 +538,10 @@
 							<string key="name">minStepTitle</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="passLabelPad">
+							<string key="name">passLabelPad</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="progressView">
 							<string key="name">progressView</string>
 							<string key="candidateClassName">UIProgressView</string>
@@ -572,8 +563,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">btnPlay@2x.png</string>
-			<string key="NS.object.0">{152, 36}</string>
+			<string key="NS.key.0">btnBuy@2x.png</string>
+			<string key="NS.object.0">{120, 38}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

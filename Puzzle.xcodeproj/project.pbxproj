@@ -94,6 +94,10 @@
 		B299F09517D02D20008FA9FF /* ImageCutterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B299F09417D02D20008FA9FF /* ImageCutterView.m */; };
 		B299F09B17D0447A008FA9FF /* btnPlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B299F09917D0447A008FA9FF /* btnPlay@2x.png */; };
 		B299F09C17D0447A008FA9FF /* btnSavePlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B299F09A17D0447A008FA9FF /* btnSavePlay@2x.png */; };
+		B2B835ED18053DC90058C010 /* head.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B835EB18053DC90058C010 /* head.png */; };
+		B2B835EE18053DC90058C010 /* head@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B835EC18053DC90058C010 /* head@2x.png */; };
+		B2B835F1180546140058C010 /* btnBuy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B835EF180546130058C010 /* btnBuy@2x.png */; };
+		B2B835F2180546140058C010 /* btnDownload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B835F0180546130058C010 /* btnDownload@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -234,6 +238,10 @@
 		B299F09417D02D20008FA9FF /* ImageCutterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCutterView.m; sourceTree = "<group>"; };
 		B299F09917D0447A008FA9FF /* btnPlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnPlay@2x.png"; sourceTree = "<group>"; };
 		B299F09A17D0447A008FA9FF /* btnSavePlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnSavePlay@2x.png"; sourceTree = "<group>"; };
+		B2B835EB18053DC90058C010 /* head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = head.png; sourceTree = "<group>"; };
+		B2B835EC18053DC90058C010 /* head@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head@2x.png"; sourceTree = "<group>"; };
+		B2B835EF180546130058C010 /* btnBuy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnBuy@2x.png"; sourceTree = "<group>"; };
+		B2B835F0180546130058C010 /* btnDownload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnDownload@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -475,6 +483,8 @@
 			isa = PBXGroup;
 			children = (
 				236051A9180260AF00A50BCB /* free */,
+				B2B835EB18053DC90058C010 /* head.png */,
+				B2B835EC18053DC90058C010 /* head@2x.png */,
 				B24D007217D9B0D000EA1BC6 /* gameover.mp3 */,
 				B24D007317D9B0D000EA1BC6 /* select.mp3 */,
 				B2827FD117D469CA00B4816F /* next.png */,
@@ -482,6 +492,8 @@
 				B2059C0B17D06F9300409942 /* GreenBack@2x.jpg */,
 				B299F09917D0447A008FA9FF /* btnPlay@2x.png */,
 				B299F09A17D0447A008FA9FF /* btnSavePlay@2x.png */,
+				B2B835EF180546130058C010 /* btnBuy@2x.png */,
+				B2B835F0180546130058C010 /* btnDownload@2x.png */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -577,6 +589,10 @@
 				B25543AA180406AE009536FD /* DownloadViewController_pad.xib in Resources */,
 				B25543AF18040DAE009536FD /* DownloadCell.xib in Resources */,
 				B25543B118040DB9009536FD /* DownloadCell_pad.xib in Resources */,
+				B2B835ED18053DC90058C010 /* head.png in Resources */,
+				B2B835EE18053DC90058C010 /* head@2x.png in Resources */,
+				B2B835F1180546140058C010 /* btnBuy@2x.png in Resources */,
+				B2B835F2180546140058C010 /* btnDownload@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,8 @@
 
 #import "CategaryViewController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 #define kFloatPicWidth 140.0
 
 #define kFloatPicWidthPad 350.0
@@ -102,6 +104,16 @@
 {
     CategaryViewController *cate = [[CategaryViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:cate];
+    [nav.navigationBar setBarStyle:UIBarStyleBlackOpaque];
+    if ([nav.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]){
+        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"head"] forBarMetrics:UIBarMetricsDefault];
+        nav.navigationBar.layer.masksToBounds = NO;
+        //设置阴影的高度
+        nav.navigationBar.layer.shadowOffset = CGSizeMake(0, 3);
+        //设置透明度
+        nav.navigationBar.layer.shadowOpacity = 0.6;
+        nav.navigationBar.layer.shadowPath = [UIBezierPath bezierPathWithRect:nav.navigationBar.bounds].CGPath;
+    }
     [self presentModalViewController:nav animated:YES];
     [cate autorelease];
     [nav autorelease];

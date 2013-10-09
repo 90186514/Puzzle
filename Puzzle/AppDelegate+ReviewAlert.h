@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "IOSHelper.h"
 
 @interface AppDelegate (ReviewAlert)
 

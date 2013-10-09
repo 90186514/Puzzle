@@ -17,6 +17,7 @@
 "Cancel" = "Cancel";
 "restart" = "Do you want replay with a new picture?";
 "Retry" = "Retry";
+"Back" = "Back";
 
 "buyDisable" = "User forbid IAP";
 "buyFail" = "Faild, cannot get product infomation";
