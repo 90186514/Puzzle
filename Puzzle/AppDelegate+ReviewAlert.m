@@ -34,28 +34,12 @@
     count ++;
     [[NSUserDefaults standardUserDefaults] setInteger:count forKey:kCountActiveKey];
     if (count != 0 && (count % kCountActiveAlertWouldShow == 0)) {
-//        UIActionSheet *act = [[UIActionSheet alloc] initWithTitle:@"Your support is my biggest power!" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Review", @"Share on Weibo", @"Share on Twitter", nil];
-//        [act showInView:self.window];
-//        [act release];
-        
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Review And Share" message:@"Your support is my biggest power!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Review", @"Share on Weibo", @"Share on Twitter", @"Buy It", nil];
         [alert show];
         [alert release];
     }
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 0) {
-        [self reviewInApp];
-    }
-    else if (buttonIndex == 1) {
-        [WeiboShareManager LoginAndShareSina];
-    }
-    else if (buttonIndex == 2) {
-        [WeiboShareManager LoginAndShareTwitter];
-    }
-}
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {

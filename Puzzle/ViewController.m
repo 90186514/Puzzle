@@ -26,6 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    admobView = nil;
     currentLevel = 0;
 	// Do any additional setup after loading the view, typically from a nib.
     
@@ -126,7 +127,7 @@
     picker.modalPresentationStyle = UIModalPresentationFullScreen;
     picker.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:picker animated:YES];
-    [picker autorelease];
+    [picker release];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -151,6 +152,7 @@
 
 - (void)playWithImage:(UIImage *)img
 {
+    self.imagePlaying = nil;
     self.imagePlaying = img;
     [btnSelectImage setImage:img forState:UIControlStateNormal];
     [puzzleView playWithImage:_imagePlaying];
@@ -278,6 +280,9 @@
 
 - (void)loadAdmobView
 {
+    if (admobView != nil) {
+        return ;
+    }
     // 在屏幕底部创建标准尺寸的视图。
     if (isPad) {
         admobView = [[GADBannerView alloc]

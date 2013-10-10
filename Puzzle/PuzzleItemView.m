@@ -24,7 +24,7 @@
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemTap:)];
         [self addGestureRecognizer:tap];
-        [tap autorelease];
+        [tap release];
     }
     return self;
 }
@@ -57,6 +57,7 @@
     self.layer.shadowRadius = 10.0;
     [[self superview] bringSubviewToFront:self];
 }
+
 - (void)setDiselect
 {
     self.layer.shadowOpacity = 0.0;

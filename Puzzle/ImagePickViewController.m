@@ -36,7 +36,8 @@
     if (isPad) {
         UIImageView *back = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"GoldBack.jpg"]];
         back.frame = self.view.bounds;
-        [self.view insertSubview:[back autorelease] atIndex:0];
+        [self.view insertSubview:back atIndex:0];
+        [back release];
     } else {
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"GoldBack.jpg"]];
     }
@@ -46,7 +47,7 @@
 
 - (void)picsScrollViewCleanup
 {
-    for (id ojb in [picsScrollView subviews]) {
+    for (id ojb in [_picsScrollView subviews]) {
         if ([ojb isKindOfClass:[UIButton class]]) {
             [ojb removeFromSuperview];
         }
@@ -62,7 +63,7 @@
     self.imagePathsArray = [ImageManager AllPlayImagePaths];
     
     int row = [_imagePathsArray count] /2;
-    picsScrollView.contentSize = CGSizeMake(picsScrollView.bounds.size.width, (row+1) * picWidth);
+    _picsScrollView.contentSize = CGSizeMake(_picsScrollView.bounds.size.width, (row+1) * picWidth);
     
     for (int i = 0; i < [_imagePathsArray count]; i ++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -73,12 +74,14 @@
         [btn setImage:img forState:UIControlStateNormal];
         [btn setTag:i];
         [btn addTarget:self action:@selector(btnPicTap:) forControlEvents:UIControlEventTouchUpInside];
-        [picsScrollView addSubview:btn];
+        [_picsScrollView addSubview:btn];
     }
 }
 
 - (void)dealloc
 {
+    [self picsScrollViewCleanup];
+    self.picsScrollView = nil;
     self.mypopoverController = nil;
     self.imagePathsArray = nil;
     [super dealloc];
@@ -115,8 +118,8 @@
         nav.navigationBar.layer.shadowPath = [UIBezierPath bezierPathWithRect:nav.navigationBar.bounds].CGPath;
     }
     [self presentModalViewController:nav animated:YES];
-    [cate autorelease];
-    [nav autorelease];
+    [cate release];
+    [nav release];
 }
 
 
@@ -147,7 +150,7 @@
         UIImagePickerController *imgPic = [[UIImagePickerController alloc] init];
         imgPic.delegate = self;
         [self presentModalViewController:imgPic animated:YES];
-        [imgPic autorelease];
+        [imgPic release];
     }
 }
 
@@ -157,7 +160,8 @@
     ImageCutterView *cutter = [[ImageCutterView alloc] initWithFrame:self.view.bounds];
     [cutter setImage:img];
     cutter.delegate = self;
-    [self.view addSubview:[cutter autorelease]];
+    [self.view addSubview:cutter];
+    [cutter release];
     [picker dismissModalViewControllerAnimated:YES];
     if (isPad) {
         [self.mypopoverController dismissPopoverAnimated:YES];

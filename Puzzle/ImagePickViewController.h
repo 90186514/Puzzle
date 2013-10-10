@@ -13,9 +13,10 @@
 
 @interface ImagePickViewController : UIViewController <UIImagePickerControllerDelegate, ImageCutterViewProtocol>
 {
-    IBOutlet UIScrollView *picsScrollView;
+    
 }
 
+@property (nonatomic, retain) IBOutlet UIScrollView *picsScrollView;
 @property (nonatomic, retain) NSMutableArray *imagePathsArray;
 
 @property (nonatomic, retain) UIPopoverController *mypopoverController;

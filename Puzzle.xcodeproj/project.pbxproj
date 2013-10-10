@@ -778,8 +778,8 @@
 		B299F09217D02BBE008FA9FF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Gun Li (7N48XR35J8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Gun Li (7N48XR35J8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Wei Luo (PKDJ7KJY8D)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wei Luo (PKDJ7KJY8D)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Puzzle/Puzzle-Prefix.pch";
 				INFOPLIST_FILE = "Puzzle/Puzzle-Info.plist";
@@ -790,8 +790,8 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "DE181976-CCCB-41B5-B5D0-E1C88E1B34DB";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DE181976-CCCB-41B5-B5D0-E1C88E1B34DB";
+				PROVISIONING_PROFILE = "A59E0391-CA73-4177-A9E2-3C2802E44B0C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A59E0391-CA73-4177-A9E2-3C2802E44B0C";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

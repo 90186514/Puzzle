@@ -64,6 +64,7 @@
 {
     [self cleanUp];
     if (image != nil) {
+        self.oriImage = nil;
         self.oriImage = image;
     }
     
@@ -85,7 +86,8 @@
         PuzzleItemView *item = [[PuzzleItemView alloc] initWithFrame:rItem withIndex:i];
         item.delegate = self;
         [item setItemImage:img];
-        [tempArr addObject:[item autorelease]];
+        [tempArr addObject:item];
+        [item release];
     }
     [self randItemsArray:tempArr];
 }
@@ -198,24 +200,33 @@
 
 - (void)playSelectMusic
 {
+    if (self.gameEffectPlayer != nil) {
+        self.gameEffectPlayer = nil;
+    }
     NSString *rs = [[NSBundle mainBundle] pathForResource:@"select" ofType:@"mp3"];
     NSURL *url = [[[NSURL alloc] initFileURLWithPath:rs] autorelease];
-    AVAudioPlayer *pl = [[[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil] autorelease];
+    AVAudioPlayer *pl = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
     self.gameEffectPlayer = pl;
     self.gameEffectPlayer.numberOfLoops = 1;
+    [pl release];
+    
     [self.gameEffectPlayer prepareToPlay];
     [self.gameEffectPlayer play];
 }
 
 - (void)playGameOverMusic
 {
+    if (self.gameEffectPlayer != nil) {
+        self.gameEffectPlayer = nil;
+    }
     NSString *rs = [[NSBundle mainBundle] pathForResource:@"gameover" ofType:@"mp3"];
     NSURL *url = [[[NSURL alloc] initFileURLWithPath:rs] autorelease];
-    AVAudioPlayer *pl = [[[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil] autorelease];
+    AVAudioPlayer *pl = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
     self.gameEffectPlayer = pl;
     self.gameEffectPlayer.numberOfLoops = 1;
     [self.gameEffectPlayer prepareToPlay];
     [self.gameEffectPlayer play];
+    [pl release];
 }
 
 
