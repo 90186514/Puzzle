@@ -15,10 +15,8 @@
 
 @property (nonatomic, retain) IBOutlet UIImageView * itemImageView;
 @property (nonatomic, retain) IBOutlet UIButton *donwButton;
+@property (nonatomic, retain) NSString *imagePrefix;
 
-
-
-
-- (void)finishLoadImage:(UIImage *)img;
-
+- (void)resetViewImagePrefix:(NSString *)prefix;
+- (IBAction)btnDownloadTap:(id)sender;
 @end

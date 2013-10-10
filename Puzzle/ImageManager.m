@@ -9,6 +9,7 @@
 #import "ImageManager.h"
 #import "def.h"
 #import "BWStatusBarOverlay.h"
+#import "HudController.h"
 
 static ImageManager *userInterface = nil;
 
@@ -57,10 +58,15 @@ static ImageManager *userInterface = nil;
     [super dealloc];
 }
 
-- (NSString *)tilePathForName:(NSString *)name
+- (NSString *)tilePathForPrefix:(NSString *)name
 {
     NSString *tilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_tile.jpg", name]];
     return tilePath;
+}
+
+- (NSString *)bigPicPathForPrefix:(NSString *)name
+{
+    return [NSString stringWithFormat:@"%@/Documents/%@.jpg", NSHomeDirectory(), name];
 }
 
 - (void)partAllTileList:(NSArray *)allList
@@ -108,7 +114,7 @@ static ImageManager *userInterface = nil;
         NSString *name = [tileItem objectForKey:@"path"];
         NSString *tileUrl = [NSString stringWithFormat:@"%@/download.php?filename=%@_tile.jpg", domin, name];
         ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:tileUrl]];
-        NSString *desPath = [self tilePathForName:name];
+        NSString *desPath = [self tilePathForPrefix:name];
         [request setDownloadDestinationPath:desPath];
         [request setUserInfo:tileItem];
         [tileQueue addOperation:request];
@@ -116,13 +122,26 @@ static ImageManager *userInterface = nil;
     [tileQueue go];
 }
 
+- (void)loadBigImageWithPrefix:(NSString *)prefix
+{
+    [[HudController shareHudController] showWithLabel:@"Loading..."];
+    NSString *tileUrl = [NSString stringWithFormat:@"%@/download.php?filename=%@.jpg", domin, prefix];
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:tileUrl]];
+    NSString *desPath = [self bigPicPathForPrefix:prefix];
+    [request setDownloadDestinationPath:desPath];
+    [request setUserInfo:[NSDictionary dictionaryWithObject:prefix forKey:@"prefix"]];
+    [request setDelegate:self];
+    [request setDidFinishSelector:@selector(loadBigDidFinish:)];
+    [request setDidFailSelector:@selector(loadBigDidFail:)];
+    [request startAsynchronous];
+}
 
 #pragma mark - Tile Network Queue Delegate
 
 - (void)tileRequestDidFail:(ASIHTTPRequest *)request
 {
     [BWStatusBarOverlay showErrorWithMessage:NSLocalizedString(@"NetworkErrorMessage", nil) duration:2.0 animated:YES];
-    NSString *tilePath = [self tilePathForName:[[request userInfo] objectForKey:@"path"]];
+    NSString *tilePath = [self tilePathForPrefix:[[request userInfo] objectForKey:@"path"]];
     [[NSFileManager defaultManager] removeItemAtPath:tilePath error:nil];
     NSLog(@"%s -> %@", __FUNCTION__, [request userInfo]);
 }
@@ -147,5 +166,18 @@ static ImageManager *userInterface = nil;
     [queue release];
 }
 
+#pragma mark - Load Big Pic Request
+
+- (void)loadBigDidFinish:(ASIHTTPRequest *)request
+{
+    [[HudController shareHudController] hudWasHidden];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotiNameDidLoadBigImage object:nil];
+}
+
+- (void)loadBigDidFail:(ASIHTTPRequest *)request
+{
+    [[HudController shareHudController] hudWasHidden];
+    [BWStatusBarOverlay showErrorWithMessage:NSLocalizedString(@"NetworkErrorMessage", nil) duration:2.0 animated:YES];
+}
 
 @end

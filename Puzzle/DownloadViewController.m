@@ -28,6 +28,7 @@
         [[ImageManager shareInterface] loadTiltImages];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadTileImage:) name:kNotiNameDidLoadTileImage object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadBigImage:) name:kNotiNameDidLoadBigImage object:nil];
     }
     return self;
 }
@@ -94,14 +95,22 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:cellNibName owner:self options:nil] objectAtIndex:0];
     }
     NSString *tilename = [[[[ImageManager shareInterface] localTileImagesArray] objectAtIndex:indexPath.row] objectForKey:@"path"];
-    NSString *tilePath = [[ImageManager shareInterface] tilePathForName:tilename];
-    UIImage *img = [UIImage imageWithContentsOfFile:tilePath];
-    [cell finishLoadImage:img];
+    [cell resetViewImagePrefix:tilename];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)didLoadTileImage:(NSNotification *)noti
 {
+    [self.photoTable reloadData];
+}
+
+- (void)didLoadBigImage:(NSNotification *)noti
+{//下载一个大图片完成后
     [self.photoTable reloadData];
 }
 

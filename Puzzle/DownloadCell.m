@@ -7,6 +7,7 @@
 //
 
 #import "DownloadCell.h"
+#import "ImageManager.h"
 
 @implementation DownloadCell
 
@@ -26,20 +27,36 @@
     _donwButton.hidden = !hasFinishLoad;
 }
 
+- (void)dealloc
+{
+    self.imagePrefix = nil;
+    self.itemImageView = nil;
+    self.donwButton = nil;
+    [super dealloc];
+}
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
 
-
-- (void)finishLoadImage:(UIImage *)img
+- (void)resetViewImagePrefix:(NSString *)prefix
 {
-    hasFinishLoad = YES;
-    _donwButton.hidden = NO;
-    _itemImageView.image = img;
+    self.imagePrefix = prefix;
+    NSString *tilePath = [[ImageManager shareInterface] tilePathForPrefix:prefix];
+    UIImage *tileimg = [UIImage imageWithContentsOfFile:tilePath];
+    _itemImageView.image = tileimg;
+    
+    NSString *bigPath = [[ImageManager shareInterface] bigPicPathForPrefix:prefix];
+    _donwButton.hidden = [[NSFileManager defaultManager] fileExistsAtPath:bigPath];
+}
+
+- (IBAction)btnDownloadTap:(id)sender
+{
+    //Down load big pics
+    [[ImageManager shareInterface] loadBigImageWithPrefix:self.imagePrefix];
 }
 
 @end

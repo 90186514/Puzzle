@@ -25,4 +25,5 @@
 #define domin @"http://www.hituhao.com"
 
 #define kNotiNameDidLoadTileImage @"kNotiNameDidLoadTileImage"
+#define kNotiNameDidLoadBigImage @"kNotiNameDidLoadBigImage"
 #endif
