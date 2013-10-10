@@ -123,7 +123,7 @@
         {
             NSObject *dataParam = [dataDictionary valueForKey:key];
             
-            if ([dataParam isKindOfClass:[UIImage class]]) 
+            if ([dataParam isKindOfClass:[UIImage class]])
             {
                 NSData* imageData = UIImagePNGRepresentation((UIImage *)dataParam);
                 [self appendUTF8Body:body dataString:[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"file\"\r\n", key]];

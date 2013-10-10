@@ -23,4 +23,6 @@
 #define isPad (UIUserInterfaceIdiomPad == UI_USER_INTERFACE_IDIOM())
 
 #define domin @"http://www.hituhao.com"
+
+#define kNotiNameDidLoadTileImage @"kNotiNameDidLoadTileImage"
 #endif

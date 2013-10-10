@@ -24,7 +24,10 @@
     if (self) {
         // Custom initialization
         self.photoListArray = list;
-        [[ImageManager shareInterface] loadTiltImages:list];
+        [[ImageManager shareInterface] partAllTileList:list];
+        [[ImageManager shareInterface] loadTiltImages];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadTileImage:) name:kNotiNameDidLoadTileImage object:nil];
     }
     return self;
 }
@@ -58,16 +61,17 @@
 
 - (void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.photoTable = nil;
     self.photoListArray = nil;
     [super dealloc];
 }
 
-#pragma mark - Table View 
+#pragma mark - Table View
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return [[[ImageManager shareInterface] localTileImagesArray] count];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -89,8 +93,16 @@
         NSString *cellNibName = (isPad) ? @"DownloadCell_pad" : @"DownloadCell";
         cell = [[[NSBundle mainBundle] loadNibNamed:cellNibName owner:self options:nil] objectAtIndex:0];
     }
-    [cell resetViewStatus];
+    NSString *tilename = [[[[ImageManager shareInterface] localTileImagesArray] objectAtIndex:indexPath.row] objectForKey:@"path"];
+    NSString *tilePath = [[ImageManager shareInterface] tilePathForName:tilename];
+    UIImage *img = [UIImage imageWithContentsOfFile:tilePath];
+    [cell finishLoadImage:img];
     return cell;
+}
+
+- (void)didLoadTileImage:(NSNotification *)noti
+{
+    [self.photoTable reloadData];
 }
 
 @end

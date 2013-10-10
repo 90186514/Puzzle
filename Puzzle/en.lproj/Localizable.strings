@@ -23,4 +23,4 @@
 "buyFail" = "Faild, cannot get product infomation";
 "Categary" = "Categary";
 "NetworkErrorTitle" = "Network Error";
-"NetworkErrorMessage" = "Cannot connect internet!";
+"NetworkErrorMessage" = "Internet is bad!";

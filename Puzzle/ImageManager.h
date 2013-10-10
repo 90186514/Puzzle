@@ -25,5 +25,7 @@
 - (void)partAllTileList:(NSArray *)allList;
 - (void)loadTiltImages;
 
+- (NSString *)tilePathForName:(NSString *)name;
+
 
 @end

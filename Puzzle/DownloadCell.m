@@ -22,7 +22,6 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    NSLog(@"%s -> ", __FUNCTION__);
     hasFinishLoad = NO;
     _donwButton.hidden = !hasFinishLoad;
 }
@@ -35,31 +34,12 @@
     // Configure the view for the selected state
 }
 
-- (void)showLoading
-{
-    _loadingView.hidden = NO;
-    [_loadingView startAnimating];
-}
-
-- (void)hideLoading
-{
-    _loadingView.hidden = YES;
-}
-
-- (void)resetViewStatus
-{
-    if (hasFinishLoad) {
-        [self hideLoading];
-    } else {
-        [self showLoading];
-    }
-}
 
 - (void)finishLoadImage:(UIImage *)img
 {
     hasFinishLoad = YES;
-    [self resetViewStatus];
     _donwButton.hidden = NO;
+    _itemImageView.image = img;
 }
 
 @end

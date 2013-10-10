@@ -172,24 +172,25 @@
 
 - (void)imageCutterView:(ImageCutterView *)cutter playWithImage:(UIImage *)img
 {
-    /*直接以此图片开始游戏
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotiNameDidPickerImageToPlay object:img];
-    [self dismissModalViewControllerAnimated:YES];
-     */
-    NSData *data = UIImagePNGRepresentation(img);
-    NSString *name = [[[NSDate date] description] stringByAppendingFormat:@".png"];
-    [data writeToFile:[NSString stringWithFormat:@"%@/Documents/%@", NSHomeDirectory(), name] atomically:YES];
+    //保存图片，继续添加其他图片
+    [self saveToDocImage:img];
     [cutter removeFromSuperview];
     [self layoutPicsShow];
 }
 
 - (void)imageCutterView:(ImageCutterView *)cutter savePlayWithImage:(UIImage *)img
 {
+    //直接开始游戏
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotiNameDidPickerImageToPlay object:img];
+    [self saveToDocImage:img];
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)saveToDocImage:(UIImage *)img
+{
     NSData *data = UIImagePNGRepresentation(img);
     NSString *name = [[[NSDate date] description] stringByAppendingFormat:@".png"];
     [data writeToFile:[NSString stringWithFormat:@"%@/Documents/%@", NSHomeDirectory(), name] atomically:YES];
-    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end

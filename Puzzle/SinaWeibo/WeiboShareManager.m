@@ -46,7 +46,6 @@ static WeiboShareManager *manager = nil;
 
 - (void)dealloc
 {
-    NSLog(@"%s -> ", __FUNCTION__);
     sinaweibo.delegate = nil;
     [SinaWeibo release];
     [super dealloc];

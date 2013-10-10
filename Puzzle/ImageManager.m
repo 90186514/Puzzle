@@ -8,6 +8,8 @@
 
 #import "ImageManager.h"
 #import "def.h"
+#import "BWStatusBarOverlay.h"
+
 static ImageManager *userInterface = nil;
 
 @implementation ImageManager
@@ -55,6 +57,12 @@ static ImageManager *userInterface = nil;
     [super dealloc];
 }
 
+- (NSString *)tilePathForName:(NSString *)name
+{
+    NSString *tilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_tile.png", name]];
+    return tilePath;
+}
+
 - (void)partAllTileList:(NSArray *)allList
 {
     //allList是某个类别下的所有tile图片
@@ -85,9 +93,12 @@ static ImageManager *userInterface = nil;
 - (void)loadTiltImages
 {
     //init tile queue
+    if (!([self.serverTileImagesArray count] > 0)) {
+        return ;
+    }
     ASINetworkQueue *tileQueue = [[ASINetworkQueue alloc] init];
     tileQueue.delegate = self;
-    [tileQueue setRequestDidFailSelector:@selector(tileRequestDidFinish:)];
+    [tileQueue setRequestDidFinishSelector:@selector(tileRequestDidFinish:)];
     [tileQueue setRequestDidFailSelector:@selector(tileRequestDidFail:)];
     [tileQueue setQueueDidFinishSelector:@selector(tileQueueDidFinish:)];
     
@@ -97,9 +108,10 @@ static ImageManager *userInterface = nil;
         NSString *name = [tileItem objectForKey:@"path"];
         NSString *tileUrl = [NSString stringWithFormat:@"%@/download.php?filename=%@_tile.png", domin, name];
         ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:tileUrl]];
-        NSString *desPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_tile.png", name]];
+        NSString *desPath = [self tilePathForName:name];
         [request setDownloadDestinationPath:desPath];
         [request setUserInfo:tileItem];
+        [tileQueue addOperation:request];
     }
     [tileQueue go];
 }
@@ -109,11 +121,23 @@ static ImageManager *userInterface = nil;
 
 - (void)tileRequestDidFail:(ASIHTTPRequest *)request
 {
+    [BWStatusBarOverlay showErrorWithMessage:NSLocalizedString(@"NetworkErrorMessage", nil) duration:2.0 animated:YES];
+    NSString *tilePath = [self tilePathForName:[[request userInfo] objectForKey:@"path"]];
+    [[NSFileManager defaultManager] removeItemAtPath:tilePath error:nil];
     NSLog(@"%s -> %@", __FUNCTION__, [request userInfo]);
 }
 
 - (void)tileRequestDidFinish:(ASIHTTPRequest *)request
 {
+    NSDictionary *tileItem = [request userInfo];
+    if ([self.serverTileImagesArray indexOfObject:tileItem] == NSNotFound) {
+        //说明这个request并不是当前类别
+        //则仅仅保存图片，不做后续的操作操作
+        return ;
+    }
+    [self.localTileImagesArray addObject:tileItem];
+    [self.serverTileImagesArray removeObject:tileItem];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotiNameDidLoadTileImage object:nil];
 }
 
 - (void)tileQueueDidFinish:(ASINetworkQueue *)queue
@@ -122,5 +146,6 @@ static ImageManager *userInterface = nil;
     [queue cancelAllOperations];
     [queue release];
 }
+
 
 @end
