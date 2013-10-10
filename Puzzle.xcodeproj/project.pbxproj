@@ -98,6 +98,9 @@
 		B2B835EE18053DC90058C010 /* head@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B835EC18053DC90058C010 /* head@2x.png */; };
 		B2B835F1180546140058C010 /* btnBuy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B835EF180546130058C010 /* btnBuy@2x.png */; };
 		B2B835F2180546140058C010 /* btnDownload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B835F0180546130058C010 /* btnDownload@2x.png */; };
+		B2F53C8F18068B15007DDBCA /* HudController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F53C8C18068B15007DDBCA /* HudController.m */; };
+		B2F53C9018068B15007DDBCA /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F53C8E18068B15007DDBCA /* MBProgressHUD.m */; };
+		B2F53C9218068B2B007DDBCA /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2F53C9118068B2B007DDBCA /* Icon-72@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -242,6 +245,11 @@
 		B2B835EC18053DC90058C010 /* head@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head@2x.png"; sourceTree = "<group>"; };
 		B2B835EF180546130058C010 /* btnBuy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnBuy@2x.png"; sourceTree = "<group>"; };
 		B2B835F0180546130058C010 /* btnDownload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnDownload@2x.png"; sourceTree = "<group>"; };
+		B2F53C8B18068B15007DDBCA /* HudController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudController.h; sourceTree = "<group>"; };
+		B2F53C8C18068B15007DDBCA /* HudController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HudController.m; sourceTree = "<group>"; };
+		B2F53C8D18068B15007DDBCA /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		B2F53C8E18068B15007DDBCA /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		B2F53C9118068B2B007DDBCA /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -408,6 +416,7 @@
 		B299F07317D02BBD008FA9FF /* Puzzle */ = {
 			isa = PBXGroup;
 			children = (
+				B2F53C8A18068B15007DDBCA /* HudController */,
 				236051B21802BFAA00A50BCB /* ASIHTTPRequest */,
 				B24109FA17E6EAB700867BB1 /* JSONKit */,
 				B24109EA17E6E88000867BB1 /* SinaWeibo */,
@@ -465,6 +474,7 @@
 				B217A8DF17EFED93003F61A9 /* Icon7@2x.png */,
 				23B3575B17E2CAED0058E4A9 /* Default~iPad.png */,
 				23B3575C17E2CAED0058E4A9 /* Icon-72.png */,
+				B2F53C9118068B2B007DDBCA /* Icon-72@2x.png */,
 				B249016117D5C45800507080 /* Icon.png */,
 				B249016217D5C45800507080 /* Icon@2x.png */,
 				B299F07517D02BBD008FA9FF /* Puzzle-Info.plist */,
@@ -496,6 +506,17 @@
 				B2B835F0180546130058C010 /* btnDownload@2x.png */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		B2F53C8A18068B15007DDBCA /* HudController */ = {
+			isa = PBXGroup;
+			children = (
+				B2F53C8B18068B15007DDBCA /* HudController.h */,
+				B2F53C8C18068B15007DDBCA /* HudController.m */,
+				B2F53C8D18068B15007DDBCA /* MBProgressHUD.h */,
+				B2F53C8E18068B15007DDBCA /* MBProgressHUD.m */,
+			);
+			path = HudController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -593,6 +614,7 @@
 				B2B835EE18053DC90058C010 /* head@2x.png in Resources */,
 				B2B835F1180546140058C010 /* btnBuy@2x.png in Resources */,
 				B2B835F2180546140058C010 /* btnDownload@2x.png in Resources */,
+				B2F53C9218068B2B007DDBCA /* Icon-72@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,6 +654,8 @@
 				236051D11802BFEA00A50BCB /* Reachability.m in Sources */,
 				B25543A718040694009536FD /* DownloadViewController.m in Sources */,
 				B25543AD18040D7E009536FD /* DownloadCell.m in Sources */,
+				B2F53C8F18068B15007DDBCA /* HudController.m in Sources */,
+				B2F53C9018068B15007DDBCA /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

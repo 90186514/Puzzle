@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ASIHTTPRequest.h"
 #import "ImageManager.h"
+#import "HudController.h"
 
 @interface DownloadViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
