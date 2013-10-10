@@ -192,8 +192,8 @@
 
 - (void)saveToDocImage:(UIImage *)img
 {
-    NSData *data = UIImagePNGRepresentation(img);
-    NSString *name = [[[NSDate date] description] stringByAppendingFormat:@".png"];
+    NSData *data = UIImageJPEGRepresentation(img, 1.0);
+    NSString *name = [[[NSDate date] description] stringByAppendingFormat:@".jpg"];
     [data writeToFile:[NSString stringWithFormat:@"%@/Documents/%@", NSHomeDirectory(), name] atomically:YES];
 }
 

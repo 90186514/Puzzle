@@ -83,11 +83,6 @@
 
 - (void)btnDoneTap:(id)sender
 {
-    /*
-     NSData *data = UIImagePNGRepresentation(img);
-     [data writeToFile:[NSString stringWithFormat:@"%@/Documents/test.png", NSHomeDirectory()] atomically:YES];
-     */
-    
     if (_delegate && [_delegate respondsToSelector:@selector(imageCutterView:didCutImage:)]) {
         [_delegate imageCutterView:self didCutImage:[self imageCutted]];
     }

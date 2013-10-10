@@ -59,7 +59,7 @@ static ImageManager *userInterface = nil;
 
 - (NSString *)tilePathForName:(NSString *)name
 {
-    NSString *tilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_tile.png", name]];
+    NSString *tilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_tile.jpg", name]];
     return tilePath;
 }
 
@@ -80,7 +80,7 @@ static ImageManager *userInterface = nil;
     for (int i = 0; i < [allList count]; i ++) {
         NSDictionary *item = [allList objectAtIndex:i];
         NSString *filePrefix = [item objectForKey:@"path"];
-        NSString *fullPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_tile.png", filePrefix]];
+        NSString *fullPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_tile.jpg", filePrefix]];
         if ([[NSFileManager defaultManager] fileExistsAtPath:fullPath]) {
             //has download
             [self.localTileImagesArray addObject:item];
@@ -106,7 +106,7 @@ static ImageManager *userInterface = nil;
         //Download the tile image
         NSDictionary *tileItem = [self.serverTileImagesArray objectAtIndex:i];
         NSString *name = [tileItem objectForKey:@"path"];
-        NSString *tileUrl = [NSString stringWithFormat:@"%@/download.php?filename=%@_tile.png", domin, name];
+        NSString *tileUrl = [NSString stringWithFormat:@"%@/download.php?filename=%@_tile.jpg", domin, name];
         ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:tileUrl]];
         NSString *desPath = [self tilePathForName:name];
         [request setDownloadDestinationPath:desPath];
