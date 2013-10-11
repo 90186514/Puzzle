@@ -35,6 +35,21 @@ static ImageManager *userInterface = nil;
     return imgArr;
 }
 
++ (NSMutableArray *)AllPlayImagePrefix
+{
+    NSMutableArray *imgArr = [NSMutableArray arrayWithCapacity:30];
+    NSString *docPath = [NSString stringWithFormat:@"%@/Documents/", NSHomeDirectory()];
+    NSArray *subItem = [[NSFileManager defaultManager] subpathsAtPath:docPath];
+    for (int i = 0; i < [subItem count]; i ++) {
+        NSString *imgName = [subItem objectAtIndex:i];
+        if ([imgName rangeOfString:@"tile"].location == NSNotFound) {
+            NSString *prefix = [[imgName componentsSeparatedByString:@"."] objectAtIndex:0];
+            [imgArr addObject:prefix];
+        }
+    }
+    return imgArr;
+}
+
 + (ImageManager *)shareInterface
 {
     if (userInterface == nil) {
@@ -60,8 +75,7 @@ static ImageManager *userInterface = nil;
 
 - (NSString *)tilePathForPrefix:(NSString *)name
 {
-    NSString *tilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_tile.jpg", name]];
-    return tilePath;
+    return [NSString stringWithFormat:@"%@/Documents/%@_tile.jpg", NSHomeDirectory(), name];
 }
 
 - (NSString *)bigPicPathForPrefix:(NSString *)name

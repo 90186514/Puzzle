@@ -11,13 +11,10 @@
 #import "def.h"
 #import "ImageManager.h"
 
-@interface ImagePickViewController : UIViewController <UIImagePickerControllerDelegate, ImageCutterViewProtocol>
-{
-    
-}
+@interface ImagePickViewController : UIViewController <UIImagePickerControllerDelegate, ImageCutterViewProtocol, UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, retain) IBOutlet UIScrollView *picsScrollView;
-@property (nonatomic, retain) NSMutableArray *imagePathsArray;
+@property (nonatomic, retain) IBOutlet UITableView *picsTableView;
+@property (nonatomic, retain) NSMutableArray *imagePrefixsArray;
 
 @property (nonatomic, retain) UIPopoverController *mypopoverController;
 

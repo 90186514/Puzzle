@@ -12,9 +12,9 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-#define kFloatPicWidth 140.0
+#define kFloatPicWidth 70.0
 
-#define kFloatPicWidthPad 350.0
+#define kFloatPicWidthPad 70.0
 
 
 @implementation ImagePickViewController
@@ -45,52 +45,27 @@
     [self layoutPicsShow];
 }
 
-- (void)picsScrollViewCleanup
-{
-    for (id ojb in [_picsScrollView subviews]) {
-        if ([ojb isKindOfClass:[UIButton class]]) {
-            [ojb removeFromSuperview];
-        }
-    }
-}
+
 
 - (void)layoutPicsShow
 {
     //init images array
-    
-    float picWidth = (UIUserInterfaceIdiomPad == UI_USER_INTERFACE_IDIOM()) ? kFloatPicWidthPad : kFloatPicWidth;
-    [self picsScrollViewCleanup];
-    self.imagePathsArray = [ImageManager AllPlayImagePaths];
-    
-    int row = [_imagePathsArray count] /2;
-    _picsScrollView.contentSize = CGSizeMake(_picsScrollView.bounds.size.width, (row+1) * picWidth);
-    
-    for (int i = 0; i < [_imagePathsArray count]; i ++) {
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        int row = i / 2;
-        int line = i % 2;
-        [btn setFrame:CGRectMake(line * picWidth, row * picWidth, picWidth, picWidth)];
-        UIImage *img = [UIImage imageWithContentsOfFile:[_imagePathsArray objectAtIndex:i]];
-        [btn setImage:img forState:UIControlStateNormal];
-        [btn setTag:i];
-        [btn addTarget:self action:@selector(btnPicTap:) forControlEvents:UIControlEventTouchUpInside];
-        [_picsScrollView addSubview:btn];
-    }
+    self.imagePrefixsArray = [ImageManager AllPlayImagePrefix];
+    [self.picsTableView reloadData];
 }
 
 - (void)dealloc
 {
-    [self picsScrollViewCleanup];
-    self.picsScrollView = nil;
+    self.picsTableView = nil;
     self.mypopoverController = nil;
-    self.imagePathsArray = nil;
+    self.imagePrefixsArray = nil;
     [super dealloc];
 }
 
 - (void)btnPicTap:(UIButton *)sender
 {
-    NSString *path = [_imagePathsArray objectAtIndex:sender.tag];
-    UIImage *img = [UIImage imageWithContentsOfFile:path];
+    NSString *pre = [_imagePrefixsArray objectAtIndex:sender.tag];
+    UIImage *img = [UIImage imageWithContentsOfFile:[[ImageManager shareInterface] bigPicPathForPrefix:pre]];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotiNameDidPickerImageToPlay object:img];
     [self dismissModalViewControllerAnimated:YES];
 }
@@ -193,8 +168,40 @@
 - (void)saveToDocImage:(UIImage *)img
 {
     NSData *data = UIImageJPEGRepresentation(img, 1.0);
-    NSString *name = [[[NSDate date] description] stringByAppendingFormat:@".jpg"];
+    NSString *prefix = [[NSDate date] description];
+    NSString *name = [prefix stringByAppendingFormat:@".jpg"];
+    NSString *tileName = [prefix stringByAppendingFormat:@"_tile.jpg"];
     [data writeToFile:[NSString stringWithFormat:@"%@/Documents/%@", NSHomeDirectory(), name] atomically:YES];
+#warning TODO 写入tile图片
+}
+
+#pragma mark - Table View
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 70.0;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.imagePrefixsArray count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *identifier = @"defaultcell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (!cell) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
+    }
+    
+    
+    return cell;
 }
 
 @end

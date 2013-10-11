@@ -20,6 +20,8 @@
 
 + (NSMutableArray *)AllPlayImagePaths;      //返回本地所有可游戏的图片路径大全
 
++ (NSMutableArray *)AllPlayImagePrefix;
+
 + (ImageManager *)shareInterface;
 
 - (void)partAllTileList:(NSArray *)allList;
