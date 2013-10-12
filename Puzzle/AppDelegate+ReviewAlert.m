@@ -15,7 +15,7 @@
 
 #define kCountActiveKey @"kCountActiveKey"
 
-#define kCountActiveAlertWouldShow 1
+#define kCountActiveAlertWouldShow 6
 
 @implementation AppDelegate (ReviewAlert)
 
@@ -33,8 +33,8 @@
     }
     count ++;
     [[NSUserDefaults standardUserDefaults] setInteger:count forKey:kCountActiveKey];
-    if (count != 0 && (count % kCountActiveAlertWouldShow == 0)) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Review And Share" message:@"Your support is my biggest power!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Review", @"Share on Weibo", @"Share on Twitter", @"Buy It", nil];
+    if ((count != 0 && (count % kCountActiveAlertWouldShow == 0)) || count == 3) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"This dialog box will never show if you finish one of the things below. Your support is my biggest power!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Buy It", @"Share on Weibo", @"Share on Twitter", @"Review", nil];
         [alert show];
         [alert release];
     }
@@ -44,7 +44,7 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
-        [self reviewInApp];
+        [IOSHelper buyNoIad];
     }
     else if (buttonIndex == 2) {
         [WeiboShareManager LoginAndShareSina];
@@ -52,7 +52,7 @@
     else if (buttonIndex == 3) {
         [WeiboShareManager LoginAndShareTwitter];
     } else if (buttonIndex == 4) {
-        [IOSHelper buyNoIad];
+        [self reviewInApp];
     }
 }
 

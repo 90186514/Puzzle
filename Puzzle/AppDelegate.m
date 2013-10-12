@@ -29,6 +29,7 @@
     if (![[NSUserDefaults standardUserDefaults] boolForKey:hasSetupData]) {
         [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:kMinStepRecord];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:hasSetupData];
+        [self copyFreeToDoc];
     }
     [BWStatusBarOverlay setAnimation:BWStatusBarOverlayAnimationTypeFromTop];
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {

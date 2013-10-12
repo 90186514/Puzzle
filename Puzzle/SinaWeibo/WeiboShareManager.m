@@ -14,7 +14,7 @@
 #import <Twitter/Twitter.h>
 #import "def.h"
 #import <Accounts/Accounts.h>
-
+#define kCountActiveKey @"kCountActiveKey"
 @implementation WeiboShareManager
 
 static WeiboShareManager *manager = nil;
@@ -93,6 +93,7 @@ static WeiboShareManager *manager = nil;
         [alert release];
         [manager release];
         manager = nil;
+        [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:kCountActiveKey];
     }
     
     if ([request.url hasSuffix:@"friendships/create.json"]) {
@@ -192,7 +193,9 @@ static WeiboShareManager *manager = nil;
                                             //请求返回的结果
                                             NSString *output = [NSString stringWithFormat:@"HTTP response status : %i\n data: %@",[urlResponse statusCode],[[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]];
                                             NSLog(@"%s -> %@", __FUNCTION__, output);
-                                            //                                            [self performSelectorOnMainThread:@selector(displayText:) withObject:output waitUntilDone:NO];
+                                            if (error == nil) {
+                                                [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:kCountActiveKey];
+                                            }
                                         }];
                                     } else {
                                         //没有twitter账号...
@@ -209,7 +212,10 @@ static WeiboShareManager *manager = nil;
                                                     break;
                                                     
                                                 case TWTweetComposeViewControllerResultDone:
+                                                {
                                                     output = @"Tweet done.";
+                                                    [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:kCountActiveKey];
+                                                }
                                                     break;
                                                     
                                                 default:

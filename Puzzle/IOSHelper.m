@@ -8,6 +8,8 @@
 
 #import "IOSHelper.h"
 
+#define kCountActiveKey @"kCountActiveKey"
+
 static IOSHelper *helperInterface = nil;
 
 @implementation IOSHelper
@@ -87,6 +89,7 @@ static IOSHelper *helperInterface = nil;
     }
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"noiad"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"noiad" object:nil];
+    [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:kCountActiveKey];
     // Remove the transaction from the payment queue.
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 }
