@@ -14,7 +14,7 @@
 #define kFloatItemWidth 100.0
 #define kMaskViewBorderWidth 2.0f
 #define kNotiNameDidPickerImageToPlay @"kNotiNameDidPickerImageToPlay"
-#define kCountItemsPerLine 3
+#define kCountItemsPerLine 3            //游戏 3*3
 
 #define hasSetupData @"hasSetupData"
 #define kMinStepRecord @"kMinStepRecord"

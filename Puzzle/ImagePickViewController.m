@@ -12,9 +12,17 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-#define kFloatPicWidth 70.0
+#import "UIImage+Expand.h"
+
+#import "TileItemView.h"
+
+#define kFloatPicWidth 70.0         //tile Image width
 
 #define kFloatPicWidthPad 70.0
+
+#define kCountTilesOneLinePad 9
+#define kCountTilesOneLine 4
+#define kTagCellTileRoot 101
 
 
 @implementation ImagePickViewController
@@ -172,7 +180,10 @@
     NSString *name = [prefix stringByAppendingFormat:@".jpg"];
     NSString *tileName = [prefix stringByAppendingFormat:@"_tile.jpg"];
     [data writeToFile:[NSString stringWithFormat:@"%@/Documents/%@", NSHomeDirectory(), name] atomically:YES];
-#warning TODO 写入tile图片
+    
+    UIImage *tileImage = [img imageByScalingToSize:CGSizeMake(kFloatPicWidth, kFloatPicWidth)];     //size(70.0, 70.0)
+    NSData *tileData = UIImageJPEGRepresentation(tileImage, 1.0);
+    [tileData writeToFile:[NSString stringWithFormat:@"%@/Documents/%@", NSHomeDirectory(), tileName] atomically:YES];
 }
 
 #pragma mark - Table View
@@ -189,19 +200,46 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.imagePrefixsArray count];
+    NSInteger count = (isPad) ? kCountTilesOneLinePad : kCountTilesOneLine;
+    int yushu = [self.imagePrefixsArray count] % count;
+    NSInteger rows = [self.imagePrefixsArray count] / count + (yushu != 0);
+    return rows;
 }
+
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *identifier = @"defaultcell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    NSInteger countPerCell = (isPad) ? kCountTilesOneLinePad : kCountTilesOneLine;
     if (!cell) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
+        for (UIView *sub in [cell subviews]) {
+            [sub removeFromSuperview];
+        }
+        NSLog(@"%s -> ", __FUNCTION__);
+        
+        for (int i = 0; i < countPerCell; i ++) {
+            TileItemView *tileItem = [[TileItemView alloc] initWithFrame:CGRectMake(i * kFloatPicWidth, 0, kFloatPicWidth, kFloatPicWidth)];
+            tileItem.tag = kTagCellTileRoot + i;
+            [cell addSubview:tileItem];
+            [tileItem release];
+        }
+    }
+    
+    for (int i = 0; i < countPerCell; i ++) {
+        NSInteger tileIndex = indexPath.row * countPerCell + i;
+        if (tileIndex < [_imagePrefixsArray count]) {
+            TileItemView *tileView = (TileItemView *)[cell viewWithTag:kTagCellTileRoot + i];
+            NSString *prefix = [_imagePrefixsArray objectAtIndex:tileIndex];
+            [tileView setTilePrefix:prefix];
+        }
     }
     
     
     return cell;
 }
+
 
 @end

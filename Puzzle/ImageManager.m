@@ -100,7 +100,8 @@ static ImageManager *userInterface = nil;
     for (int i = 0; i < [allList count]; i ++) {
         NSDictionary *item = [allList objectAtIndex:i];
         NSString *filePrefix = [item objectForKey:@"path"];
-        NSString *fullPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_tile.jpg", filePrefix]];
+        
+        NSString *fullPath = [self tilePathForPrefix:filePrefix];
         if ([[NSFileManager defaultManager] fileExistsAtPath:fullPath]) {
             //has download
             [self.localTileImagesArray addObject:item];

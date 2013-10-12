@@ -94,6 +94,8 @@
 		B299F09517D02D20008FA9FF /* ImageCutterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B299F09417D02D20008FA9FF /* ImageCutterView.m */; };
 		B299F09B17D0447A008FA9FF /* btnPlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B299F09917D0447A008FA9FF /* btnPlay@2x.png */; };
 		B299F09C17D0447A008FA9FF /* btnSavePlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B299F09A17D0447A008FA9FF /* btnSavePlay@2x.png */; };
+		B2A43C9718091DBB008A7933 /* UIImage+Expand.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A43C9618091DBB008A7933 /* UIImage+Expand.m */; };
+		B2A43C9A18092A21008A7933 /* TileItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A43C9918092A21008A7933 /* TileItemView.m */; };
 		B2B835ED18053DC90058C010 /* head.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B835EB18053DC90058C010 /* head.png */; };
 		B2B835EE18053DC90058C010 /* head@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B835EC18053DC90058C010 /* head@2x.png */; };
 		B2B835F1180546140058C010 /* btnBuy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B835EF180546130058C010 /* btnBuy@2x.png */; };
@@ -241,6 +243,10 @@
 		B299F09417D02D20008FA9FF /* ImageCutterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCutterView.m; sourceTree = "<group>"; };
 		B299F09917D0447A008FA9FF /* btnPlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnPlay@2x.png"; sourceTree = "<group>"; };
 		B299F09A17D0447A008FA9FF /* btnSavePlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnSavePlay@2x.png"; sourceTree = "<group>"; };
+		B2A43C9518091DBB008A7933 /* UIImage+Expand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Expand.h"; sourceTree = "<group>"; };
+		B2A43C9618091DBB008A7933 /* UIImage+Expand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Expand.m"; sourceTree = "<group>"; };
+		B2A43C9818092A21008A7933 /* TileItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileItemView.h; sourceTree = "<group>"; };
+		B2A43C9918092A21008A7933 /* TileItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileItemView.m; sourceTree = "<group>"; };
 		B2B835EB18053DC90058C010 /* head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = head.png; sourceTree = "<group>"; };
 		B2B835EC18053DC90058C010 /* head@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head@2x.png"; sourceTree = "<group>"; };
 		B2B835EF180546130058C010 /* btnBuy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnBuy@2x.png"; sourceTree = "<group>"; };
@@ -440,12 +446,16 @@
 				B2059C2017D0908500409942 /* PuzzleItemView.m */,
 				B299F09317D02D20008FA9FF /* ImageCutterView.h */,
 				B299F09417D02D20008FA9FF /* ImageCutterView.m */,
+				B2A43C9818092A21008A7933 /* TileItemView.h */,
+				B2A43C9918092A21008A7933 /* TileItemView.m */,
 				B2059C0D17D072B800409942 /* ImagePickViewController.h */,
 				B2059C0E17D072B800409942 /* ImagePickViewController.m */,
 				B2059C0F17D072B800409942 /* ImagePickViewController.xib */,
 				B2059C1217D072E800409942 /* ImagePickViewController_pad.xib */,
 				B2827FC717D42AD600B4816F /* ImageManager.h */,
 				B2827FC817D42AD600B4816F /* ImageManager.m */,
+				B2A43C9518091DBB008A7933 /* UIImage+Expand.h */,
+				B2A43C9618091DBB008A7933 /* UIImage+Expand.m */,
 				B2059C2417D099B300409942 /* def.h */,
 				B2827FD917D46F9C00B4816F /* CustomAlertView.h */,
 				B2827FDA17D46F9C00B4816F /* CustomAlertView.m */,
@@ -656,6 +666,8 @@
 				B25543AD18040D7E009536FD /* DownloadCell.m in Sources */,
 				B2F53C8F18068B15007DDBCA /* HudController.m in Sources */,
 				B2F53C9018068B15007DDBCA /* MBProgressHUD.m in Sources */,
+				B2A43C9718091DBB008A7933 /* UIImage+Expand.m in Sources */,
+				B2A43C9A18092A21008A7933 /* TileItemView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
