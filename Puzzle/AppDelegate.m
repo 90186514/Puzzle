@@ -42,6 +42,17 @@
     return YES;
 }
 
+- (void)copyFreeToDoc
+{
+    NSString *resFolder = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"free"];
+    NSArray *subitems = [[NSFileManager defaultManager] subpathsAtPath:resFolder];
+    for (int i = 0; i < [subitems count]; i ++) {
+        NSString * itemPath = [resFolder stringByAppendingPathComponent:[subitems objectAtIndex:i]];
+        NSString *docPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:[subitems objectAtIndex:i]];
+        [[NSFileManager defaultManager] copyItemAtPath:itemPath toPath:docPath error:nil];
+    }
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

@@ -40,6 +40,11 @@
     UIBarButtonItem *backBtn = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back", nil) style:UIBarButtonItemStylePlain target:self action:@selector(btnBackTap:)];
     backBtn.tintColor = [UIColor purpleColor];
     self.navigationItem.leftBarButtonItem = [backBtn autorelease];
+    
+    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStylePlain target:self action:@selector(btnDoneTap:)];
+    doneBtn.tintColor = [UIColor purpleColor];
+    self.navigationItem.rightBarButtonItem = [doneBtn autorelease];
+    
     if (isPad) {
         UIImageView *back = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"GreenBack.jpg"]];
         back.frame = self.view.bounds;
@@ -52,6 +57,11 @@
 - (void)btnBackTap:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)btnDoneTap:(id)sender
+{
+    [self.navigationController dismissModalViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning

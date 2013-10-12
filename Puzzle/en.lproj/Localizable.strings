@@ -24,3 +24,4 @@
 "Categary" = "Categary";
 "NetworkErrorTitle" = "Network Error";
 "NetworkErrorMessage" = "Internet is bad!";
+"DeleteImageAlert" = "Are you sure delete this picture?";

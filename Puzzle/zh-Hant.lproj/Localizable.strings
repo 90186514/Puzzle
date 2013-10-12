@@ -24,3 +24,4 @@
 "Categary" = "图片分类";
 "NetworkErrorTitle" = "加载失败";
 "NetworkErrorMessage" = "网络不给力啊~请重新尝试!";
+"DeleteImageAlert" = "您确定删除这张图片吗？";

@@ -8,9 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TileItemView : UIView
+@class TileItemView;
+
+@protocol TileItemViewProtocol <NSObject>
+
+- (void)didPickTileImage:(TileItemView *)tile;
+- (void)didDeleteTileImage:(TileItemView *)tile;
+
+@end
+
+@interface TileItemView : UIView <UIAlertViewDelegate>
 
 @property (nonatomic, retain) NSString *tilePrefix;
+@property (nonatomic, assign) id<TileItemViewProtocol> delegate;
 
 - (void)setTilePrefix:(NSString *)tilePrefix;
 

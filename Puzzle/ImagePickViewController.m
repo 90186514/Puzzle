@@ -14,8 +14,6 @@
 
 #import "UIImage+Expand.h"
 
-#import "TileItemView.h"
-
 #define kFloatPicWidth 70.0         //tile Image width
 
 #define kFloatPicWidthPad 70.0
@@ -49,11 +47,13 @@
     } else {
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"GoldBack.jpg"]];
     }
-    
-    [self layoutPicsShow];
 }
 
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self layoutPicsShow];
+}
 
 - (void)layoutPicsShow
 {
@@ -70,12 +70,17 @@
     [super dealloc];
 }
 
-- (void)btnPicTap:(UIButton *)sender
+- (void)didPickTileImage:(TileItemView *)tile
 {
-    NSString *pre = [_imagePrefixsArray objectAtIndex:sender.tag];
+    NSString *pre = [tile tilePrefix];
     UIImage *img = [UIImage imageWithContentsOfFile:[[ImageManager shareInterface] bigPicPathForPrefix:pre]];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotiNameDidPickerImageToPlay object:img];
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)didDeleteTileImage:(TileItemView *)tile
+{
+    [self layoutPicsShow];
 }
 
 - (void)didReceiveMemoryWarning
@@ -206,8 +211,6 @@
     return rows;
 }
 
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *identifier = @"defaultcell";
@@ -218,10 +221,10 @@
         for (UIView *sub in [cell subviews]) {
             [sub removeFromSuperview];
         }
-        NSLog(@"%s -> ", __FUNCTION__);
         
         for (int i = 0; i < countPerCell; i ++) {
             TileItemView *tileItem = [[TileItemView alloc] initWithFrame:CGRectMake(i * kFloatPicWidth, 0, kFloatPicWidth, kFloatPicWidth)];
+            tileItem.delegate = self;
             tileItem.tag = kTagCellTileRoot + i;
             [cell addSubview:tileItem];
             [tileItem release];
@@ -234,6 +237,9 @@
             TileItemView *tileView = (TileItemView *)[cell viewWithTag:kTagCellTileRoot + i];
             NSString *prefix = [_imagePrefixsArray objectAtIndex:tileIndex];
             [tileView setTilePrefix:prefix];
+        } else {
+            TileItemView *tileView = (TileItemView *)[cell viewWithTag:kTagCellTileRoot + i];
+            [tileView setTilePrefix:nil];
         }
     }
     

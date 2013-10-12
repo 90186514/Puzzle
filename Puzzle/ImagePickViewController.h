@@ -10,8 +10,9 @@
 #import "ImageCutterView.h"
 #import "def.h"
 #import "ImageManager.h"
+#import "TileItemView.h"
 
-@interface ImagePickViewController : UIViewController <UIImagePickerControllerDelegate, ImageCutterViewProtocol, UITableViewDataSource, UITableViewDelegate>
+@interface ImagePickViewController : UIViewController <UIImagePickerControllerDelegate, ImageCutterViewProtocol, UITableViewDataSource, UITableViewDelegate, TileItemViewProtocol>
 
 @property (nonatomic, retain) IBOutlet UITableView *picsTableView;
 @property (nonatomic, retain) NSMutableArray *imagePrefixsArray;

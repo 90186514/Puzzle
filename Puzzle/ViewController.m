@@ -168,9 +168,9 @@
 - (void)restartRandomImage
 {
     srand(time(NULL));
-    NSMutableArray *arr = [ImageManager AllPlayImagePaths];
+    NSMutableArray *arr = [ImageManager AllPlayImagePrefix];
     int ran = random() % [arr count];
-    NSString *path = [arr objectAtIndex:ran];
+    NSString *path = [[ImageManager shareInterface] bigPicPathForPrefix:[arr objectAtIndex:ran]];
     UIImage *img = [UIImage imageWithContentsOfFile:path];
     [self playWithImage:img];
     [self animationPuzzleView];
