@@ -23,6 +23,7 @@
 {
     NSString *url = [NSString stringWithFormat:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@",kAPPID];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+    [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:kCountActiveKey];
 }
 
 - (void)scheduleAlert
