@@ -12,6 +12,7 @@
 #import "def.h"
 #import "BWStatusBarOverlay.h"
 #import "AppDelegate+ReviewAlert.h"
+#import "GCHelper.h"
 
 @implementation AppDelegate
 
@@ -38,6 +39,7 @@
         self.viewController = [[[ViewController alloc] initWithNibName:@"ViewController_pad" bundle:nil] autorelease];
     }
     self.window.rootViewController = self.viewController;
+    [[GCHelper shareInterface] authenticateLocalUser];
     [self.window makeKeyAndVisible];
     
     return YES;

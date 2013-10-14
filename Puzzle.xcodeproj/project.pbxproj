@@ -79,6 +79,8 @@
 		B2827FEA17D472DE00B4816F /* status-bar-progress.png in Resources */ = {isa = PBXBuildFile; fileRef = B2827FE317D472DE00B4816F /* status-bar-progress.png */; };
 		B2827FEB17D472DE00B4816F /* status-bar-progress@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2827FE417D472DE00B4816F /* status-bar-progress@2x.png */; };
 		B2827FED17D480D300B4816F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2827FEC17D480D300B4816F /* AudioToolbox.framework */; };
+		B28EFF14180BCC6700632CBF /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B28EFF13180BCC6700632CBF /* GameKit.framework */; };
+		B28EFF17180BCCC000632CBF /* GCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B28EFF16180BCCC000632CBF /* GCHelper.m */; };
 		B299F06E17D02BBD008FA9FF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B299F06D17D02BBD008FA9FF /* UIKit.framework */; };
 		B299F07017D02BBD008FA9FF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B299F06F17D02BBD008FA9FF /* Foundation.framework */; };
 		B299F07217D02BBD008FA9FF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B299F07117D02BBD008FA9FF /* CoreGraphics.framework */; };
@@ -222,6 +224,9 @@
 		B2827FE317D472DE00B4816F /* status-bar-progress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status-bar-progress.png"; sourceTree = "<group>"; };
 		B2827FE417D472DE00B4816F /* status-bar-progress@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status-bar-progress@2x.png"; sourceTree = "<group>"; };
 		B2827FEC17D480D300B4816F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		B28EFF13180BCC6700632CBF /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		B28EFF15180BCCC000632CBF /* GCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCHelper.h; sourceTree = "<group>"; };
+		B28EFF16180BCCC000632CBF /* GCHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCHelper.m; sourceTree = "<group>"; };
 		B299F06A17D02BBD008FA9FF /* Puzzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puzzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B299F06D17D02BBD008FA9FF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B299F06F17D02BBD008FA9FF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -263,6 +268,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B28EFF14180BCC6700632CBF /* GameKit.framework in Frameworks */,
 				236051D91802C08D00A50BCB /* Security.framework in Frameworks */,
 				236051D71802C07F00A50BCB /* MobileCoreServices.framework in Frameworks */,
 				236051D51802C05900A50BCB /* libxml2.dylib in Frameworks */,
@@ -396,6 +402,7 @@
 		B299F06C17D02BBD008FA9FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B28EFF13180BCC6700632CBF /* GameKit.framework */,
 				236051D41802C05900A50BCB /* libxml2.dylib */,
 				236051D21802C04C00A50BCB /* libz.dylib */,
 				236051D81802C08D00A50BCB /* Security.framework */,
@@ -471,6 +478,8 @@
 				B25543AC18040D7E009536FD /* DownloadCell.m */,
 				B25543AE18040DAE009536FD /* DownloadCell.xib */,
 				B25543B018040DB9009536FD /* DownloadCell_pad.xib */,
+				B28EFF15180BCCC000632CBF /* GCHelper.h */,
+				B28EFF16180BCCC000632CBF /* GCHelper.m */,
 			);
 			path = Puzzle;
 			sourceTree = "<group>";
@@ -668,6 +677,7 @@
 				B2F53C9018068B15007DDBCA /* MBProgressHUD.m in Sources */,
 				B2A43C9718091DBB008A7933 /* UIImage+Expand.m in Sources */,
 				B2A43C9A18092A21008A7933 /* TileItemView.m in Sources */,
+				B28EFF17180BCCC000632CBF /* GCHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

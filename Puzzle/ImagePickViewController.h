@@ -16,6 +16,8 @@
 
 @property (nonatomic, retain) IBOutlet UITableView *picsTableView;
 @property (nonatomic, retain) NSMutableArray *imagePrefixsArray;
+@property (nonatomic, retain) IBOutlet UIButton *diyButton;
+@property (nonatomic, retain) IBOutlet UIButton *moreButton;
 
 @property (nonatomic, retain) UIPopoverController *mypopoverController;
 

@@ -36,7 +36,7 @@
 
 - (void)tapGestureSelector:(UIGestureRecognizer *)ges
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(didPickTileImage:)]) {
+    if (_tilePrefix && _delegate && [_delegate respondsToSelector:@selector(didPickTileImage:)]) {
         [_delegate didPickTileImage:self];
     }
 }

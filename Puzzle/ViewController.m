@@ -12,10 +12,11 @@
 #import "ImageManager.h"
 #import <QuartzCore/QuartzCore.h>
 #import "BWStatusBarOverlay.h"
+#import "GCHelper.h"
 
 #define MY_BANNER_UNIT_ID @"a15226a086af1c9"    //admob
 
-#define playableMaxSeconds 36
+#define playableMaxSeconds 33
 
 @interface ViewController ()
 
@@ -217,6 +218,7 @@
     if (currentLevel > record) {
         [[NSUserDefaults standardUserDefaults] setInteger:currentLevel forKey:kMinStepRecord];
         minStepLabel.text = [NSString stringWithFormat:@"%d", [[NSUserDefaults standardUserDefaults] integerForKey:kMinStepRecord]];
+        [[GCHelper shareInterface] reportTopLevelScore:currentLevel];
     }
 }
 

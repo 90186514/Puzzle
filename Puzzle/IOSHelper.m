@@ -8,6 +8,20 @@
 
 #import "IOSHelper.h"
 
+//针对pro
+#define kBoolIsPuzzlePro 1
+
+#ifndef kBoolIsPuzzlePro
+
+#define kBundleIDRemoveIAd @"com.puzzle.iad"
+
+#else
+
+#define kBundleIDRemoveIAd @"com.puzzlepro.iad"
+
+#endif
+//////
+
 #define kCountActiveKey @"kCountActiveKey"
 
 static IOSHelper *helperInterface = nil;
@@ -37,7 +51,7 @@ static IOSHelper *helperInterface = nil;
 }
 
 - (void)getProductInfo {
-    NSSet * set = [NSSet setWithArray:@[@"com.puzzle.iad"]];
+    NSSet * set = [NSSet setWithArray:@[kBundleIDRemoveIAd]];
     SKProductsRequest * request = [[SKProductsRequest alloc] initWithProductIdentifiers:set];
     request.delegate = self;
     [request start];
