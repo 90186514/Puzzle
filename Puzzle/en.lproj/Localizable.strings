@@ -7,7 +7,7 @@
 */
 
 "test" = "test";
-"minStepTitle" = "Best Level";
+"minStepTitle" = "Top Level";
 "curStepTitle" = "Current Level";
 "levelSuccess" = "Congratulations!";
 "levelFaild" = "Faild! Drop 2 levels!";

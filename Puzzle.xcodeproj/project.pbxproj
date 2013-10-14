@@ -772,6 +772,8 @@
 		B299F09117D02BBE008FA9FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: XINSHENG PENG (99A734G3MP)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: XINSHENG PENG (99A734G3MP)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Puzzle/Puzzle-Prefix.pch";
 				INFOPLIST_FILE = "Puzzle/Puzzle-Info.plist";
@@ -782,6 +784,8 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "272BEDCE-F511-4523-B7F4-737C220EA6F8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "272BEDCE-F511-4523-B7F4-737C220EA6F8";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
