@@ -50,7 +50,6 @@
 - (void)layoutViewPhone
 {
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"GreenBack.jpg"]];
-    self.imagePlaying = nil;
     self.progressTimer = nil;
     minStepLabel.text = [NSString stringWithFormat:@"%d", [[NSUserDefaults standardUserDefaults] integerForKey:kMinStepRecord]];
     minStepTitle.text = NSLocalizedString(@"minStepTitle", nil);
@@ -62,7 +61,6 @@
     UIImageView *back = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"GreenBack.jpg"]];
     back.frame = self.view.bounds;
     [self.view insertSubview:[back autorelease] atIndex:0];
-    self.imagePlaying = nil;
     self.progressTimer = nil;
     minStepLabel.text = [NSString stringWithFormat:@"%d", [[NSUserDefaults standardUserDefaults] integerForKey:kMinStepRecord]];
     minStepTitle.text = NSLocalizedString(@"minStepTitle", nil);
@@ -89,7 +87,7 @@
 {
     [super viewDidAppear:animated];
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"noiad"]) {
-        [self loadAdmobView];
+//        [self loadAdmobView];
     } else {
         btnBut.hidden = YES;
     }
@@ -104,7 +102,6 @@
 - (void)dealloc
 {
     [puzzleView release];
-    self.imagePlaying = nil;
     [super dealloc];
 }
 
@@ -153,10 +150,8 @@
 
 - (void)playWithImage:(UIImage *)img
 {
-    self.imagePlaying = nil;
-    self.imagePlaying = img;
     [btnSelectImage setImage:img forState:UIControlStateNormal];
-    [puzzleView playWithImage:_imagePlaying];
+    [puzzleView playWithImage:img];
     //schedule
     maxSeconds = playableMaxSeconds;
     [self updateProgerssView];

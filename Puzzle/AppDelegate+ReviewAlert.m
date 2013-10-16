@@ -15,7 +15,7 @@
 
 #define kCountActiveKey @"kCountActiveKey"
 
-#define kCountActiveAlertWouldShow 6
+#define kCountActiveAlertWouldShow 8
 
 @implementation AppDelegate (ReviewAlert)
 

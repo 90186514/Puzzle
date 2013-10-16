@@ -21,7 +21,25 @@
 
 "buyDisable" = "User forbid IAP";
 "buyFail" = "Faild, cannot get product infomation";
-"Categary" = "Categary";
+"Categary" = "Extend";
 "NetworkErrorTitle" = "Network Error";
 "NetworkErrorMessage" = "Internet is bad!";
 "DeleteImageAlert" = "Are you sure delete this picture?";
+
+"Done" = "Done";
+
+
+//Categary Name
+"Free" = "Free";
+"Animals" = "Animals";
+"Beauty" = "Beauty";
+"Cartoon" = "Cartoon";
+
+"65Coins" = "Buy 65 Coins";
+"150Coins" = "Buy 150 Coins";
+"325Coins" = "Buy 325 Coins";
+"530Coins" = "Buy 530 Coins";
+"1000Coins" = "Buy 1000 Coins";
+
+"currentCoinTitle" = "You have got %d coins.";
+"cost10coin" = "10 Coins";

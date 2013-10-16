@@ -102,6 +102,11 @@
 		B2B835EE18053DC90058C010 /* head@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B835EC18053DC90058C010 /* head@2x.png */; };
 		B2B835F1180546140058C010 /* btnBuy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B835EF180546130058C010 /* btnBuy@2x.png */; };
 		B2B835F2180546140058C010 /* btnDownload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B835F0180546130058C010 /* btnDownload@2x.png */; };
+		B2E7FB44180E65EA0037CE8F /* buyCar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2E7FB43180E65EA0037CE8F /* buyCar@2x.png */; };
+		B2E7FB48180E685A0037CE8F /* BuyCoinsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E7FB46180E685A0037CE8F /* BuyCoinsViewController.m */; };
+		B2E7FB49180E685A0037CE8F /* BuyCoinsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2E7FB47180E685A0037CE8F /* BuyCoinsViewController.xib */; };
+		B2E7FB4B180E686A0037CE8F /* BuyCoinsViewController_pad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2E7FB4A180E686A0037CE8F /* BuyCoinsViewController_pad.xib */; };
+		B2E7FB4D180E98580037CE8F /* favour.png in Resources */ = {isa = PBXBuildFile; fileRef = B2E7FB4C180E98580037CE8F /* favour.png */; };
 		B2F53C8F18068B15007DDBCA /* HudController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F53C8C18068B15007DDBCA /* HudController.m */; };
 		B2F53C9018068B15007DDBCA /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F53C8E18068B15007DDBCA /* MBProgressHUD.m */; };
 		B2F53C9218068B2B007DDBCA /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2F53C9118068B2B007DDBCA /* Icon-72@2x.png */; };
@@ -256,6 +261,12 @@
 		B2B835EC18053DC90058C010 /* head@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head@2x.png"; sourceTree = "<group>"; };
 		B2B835EF180546130058C010 /* btnBuy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnBuy@2x.png"; sourceTree = "<group>"; };
 		B2B835F0180546130058C010 /* btnDownload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnDownload@2x.png"; sourceTree = "<group>"; };
+		B2E7FB43180E65EA0037CE8F /* buyCar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buyCar@2x.png"; sourceTree = "<group>"; };
+		B2E7FB45180E685A0037CE8F /* BuyCoinsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyCoinsViewController.h; sourceTree = "<group>"; };
+		B2E7FB46180E685A0037CE8F /* BuyCoinsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyCoinsViewController.m; sourceTree = "<group>"; };
+		B2E7FB47180E685A0037CE8F /* BuyCoinsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BuyCoinsViewController.xib; sourceTree = "<group>"; };
+		B2E7FB4A180E686A0037CE8F /* BuyCoinsViewController_pad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BuyCoinsViewController_pad.xib; sourceTree = "<group>"; };
+		B2E7FB4C180E98580037CE8F /* favour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favour.png; sourceTree = "<group>"; };
 		B2F53C8B18068B15007DDBCA /* HudController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudController.h; sourceTree = "<group>"; };
 		B2F53C8C18068B15007DDBCA /* HudController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HudController.m; sourceTree = "<group>"; };
 		B2F53C8D18068B15007DDBCA /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
@@ -480,6 +491,10 @@
 				B25543B018040DB9009536FD /* DownloadCell_pad.xib */,
 				B28EFF15180BCCC000632CBF /* GCHelper.h */,
 				B28EFF16180BCCC000632CBF /* GCHelper.m */,
+				B2E7FB45180E685A0037CE8F /* BuyCoinsViewController.h */,
+				B2E7FB46180E685A0037CE8F /* BuyCoinsViewController.m */,
+				B2E7FB47180E685A0037CE8F /* BuyCoinsViewController.xib */,
+				B2E7FB4A180E686A0037CE8F /* BuyCoinsViewController_pad.xib */,
 			);
 			path = Puzzle;
 			sourceTree = "<group>";
@@ -511,6 +526,7 @@
 		B299F09817D0447A008FA9FF /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				B2E7FB4C180E98580037CE8F /* favour.png */,
 				236051A9180260AF00A50BCB /* free */,
 				B2B835EB18053DC90058C010 /* head.png */,
 				B2B835EC18053DC90058C010 /* head@2x.png */,
@@ -523,6 +539,7 @@
 				B299F09A17D0447A008FA9FF /* btnSavePlay@2x.png */,
 				B2B835EF180546130058C010 /* btnBuy@2x.png */,
 				B2B835F0180546130058C010 /* btnDownload@2x.png */,
+				B2E7FB43180E65EA0037CE8F /* buyCar@2x.png */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -634,6 +651,10 @@
 				B2B835F1180546140058C010 /* btnBuy@2x.png in Resources */,
 				B2B835F2180546140058C010 /* btnDownload@2x.png in Resources */,
 				B2F53C9218068B2B007DDBCA /* Icon-72@2x.png in Resources */,
+				B2E7FB44180E65EA0037CE8F /* buyCar@2x.png in Resources */,
+				B2E7FB49180E685A0037CE8F /* BuyCoinsViewController.xib in Resources */,
+				B2E7FB4B180E686A0037CE8F /* BuyCoinsViewController_pad.xib in Resources */,
+				B2E7FB4D180E98580037CE8F /* favour.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -678,6 +699,7 @@
 				B2A43C9718091DBB008A7933 /* UIImage+Expand.m in Sources */,
 				B2A43C9A18092A21008A7933 /* TileItemView.m in Sources */,
 				B28EFF17180BCCC000632CBF /* GCHelper.m in Sources */,
+				B2E7FB48180E685A0037CE8F /* BuyCoinsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

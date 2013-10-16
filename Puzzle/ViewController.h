@@ -34,9 +34,6 @@
     IBOutlet UILabel *passLabelPad;
 }
 
-
-
-@property (nonatomic, retain) UIImage *imagePlaying;
 @property (nonatomic, retain) NSTimer *progressTimer;
 
 @end

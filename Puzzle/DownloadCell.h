@@ -15,8 +15,13 @@
 
 @property (nonatomic, retain) IBOutlet UIImageView * itemImageView;
 @property (nonatomic, retain) IBOutlet UIButton *donwButton;
+@property (nonatomic, retain) IBOutlet UILabel *favLabel;
 @property (nonatomic, retain) NSString *imagePrefix;
 
 - (void)resetViewImagePrefix:(NSString *)prefix;
 - (IBAction)btnDownloadTap:(id)sender;
+
+- (void)setFavour:(NSString *)fav;
+- (void)showPayStyle;
+
 @end

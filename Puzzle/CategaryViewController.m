@@ -9,6 +9,7 @@
 #import "CategaryViewController.h"
 #import "DownloadViewController.h"
 #import "JSONKit.h"
+#import "BuyCoinsViewController.h"
 
 #define kTagCategaryFailAlert 101
 #define kTagPhotolistFailAlert 102
@@ -41,6 +42,10 @@
     leftItem.tintColor = [UIColor purpleColor];
     self.navigationItem.leftBarButtonItem = leftItem;
     
+    UIBarButtonItem *rightItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"buyCar.png"] style:UIBarButtonItemStylePlain target:self action:@selector(buyCarTap:)] autorelease];
+    rightItem.tintColor = [UIColor purpleColor];
+    self.navigationItem.rightBarButtonItem = rightItem;
+    
     if (isPad) {
         UIImageView *back = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"GreenBack.jpg"]];
         back.frame = self.view.bounds;
@@ -48,6 +53,13 @@
     } else {
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"GreenBack.jpg"]];
     }
+}
+
+- (void)buyCarTap:(id)sender
+{
+    BuyCoinsViewController *buycoins = [[BuyCoinsViewController alloc] init];
+    [self.navigationController pushViewController:buycoins animated:YES];
+    [buycoins release];
 }
 
 - (void)btnBackTap:(id)sender
@@ -90,7 +102,8 @@
         cel = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identi] autorelease];
     }
     
-    cel.textLabel.text = [[_categaryArray objectAtIndex:indexPath.row] objectForKey:@"categaryname"];
+    NSString *cateName = [[_categaryArray objectAtIndex:indexPath.row] objectForKey:@"categaryname"];
+    cel.textLabel.text = NSLocalizedString(cateName, nil);
     cel.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cel;

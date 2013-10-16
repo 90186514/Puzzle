@@ -80,6 +80,12 @@
 
 #pragma mark - Table View
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSInteger count = [[NSUserDefaults standardUserDefaults] integerForKey:@"coincount"];
+    return [NSString stringWithFormat:NSLocalizedString(@"currentCoinTitle", nil), count];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [[[ImageManager shareInterface] localTileImagesArray] count];
@@ -104,8 +110,14 @@
         NSString *cellNibName = (isPad) ? @"DownloadCell_pad" : @"DownloadCell";
         cell = [[[NSBundle mainBundle] loadNibNamed:cellNibName owner:self options:nil] objectAtIndex:0];
     }
-    NSString *tilename = [[[[ImageManager shareInterface] localTileImagesArray] objectAtIndex:indexPath.row] objectForKey:@"path"];
+    NSDictionary *dataDic = [[[ImageManager shareInterface] localTileImagesArray] objectAtIndex:indexPath.row];
+    NSString *tilename = [dataDic objectForKey:@"path"];
     [cell resetViewImagePrefix:tilename];
+    [cell setFavour:[dataDic objectForKey:@"favour"]];
+    if ([[dataDic objectForKey:@"categaryid"] integerValue] != 1) {
+        //不是免费的图片
+        [cell showPayStyle];
+    }
     return cell;
 }
 

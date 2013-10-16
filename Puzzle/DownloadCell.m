@@ -53,10 +53,23 @@
     _donwButton.hidden = [[NSFileManager defaultManager] fileExistsAtPath:bigPath];
 }
 
+- (void)setFavour:(NSString *)fav
+{
+    if (fav == nil) {
+        return ;
+    }
+    self.favLabel.text = fav;
+}
+
 - (IBAction)btnDownloadTap:(id)sender
 {
     //Down load big pics
     [[ImageManager shareInterface] loadBigImageWithPrefix:self.imagePrefix];
+}
+
+- (void)showPayStyle
+{
+    [_donwButton setTitle:NSLocalizedString(@"cost10coin", nil) forState:UIControlStateNormal];
 }
 
 @end

@@ -82,6 +82,7 @@
         
         CGImageRef imgRef = CGImageCreateWithImageInRect(_oriImage.CGImage, rImageItem);
         UIImage *img = [UIImage imageWithCGImage:imgRef];
+        CGImageRelease(imgRef);
         
         PuzzleItemView *item = [[PuzzleItemView alloc] initWithFrame:rItem withIndex:i];
         item.delegate = self;

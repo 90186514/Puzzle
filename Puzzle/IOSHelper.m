@@ -58,6 +58,15 @@ static IOSHelper *helperInterface = nil;
     [request release];
 }
 
+- (void)payProductID:(NSString *)proID
+{
+    NSSet * set = [NSSet setWithArray:@[proID]];
+    SKProductsRequest * request = [[SKProductsRequest alloc] initWithProductIdentifiers:set];
+    request.delegate = self;
+    [request start];
+    [request release];
+}
+
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
     NSArray *myProduct = response.products;
     if (myProduct.count == 0) {
@@ -98,28 +107,43 @@ static IOSHelper *helperInterface = nil;
     // Your application should implement these two methods.
     NSString * productIdentifier = transaction.payment.productIdentifier;
 //    NSString * receipt = [transaction.transactionReceipt base64EncodedString];
-    if ([productIdentifier length] > 0) {
-        // 向自己的服务器验证购买凭证
-    }
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"noiad"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"noiad" object:nil];
-    [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:kCountActiveKey];
+    
+    [self finishPayProductID:productIdentifier];
     // Remove the transaction from the payment queue.
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 }
+
+- (void)finishPayProductID:(NSString *)prodctID
+{
+    if ([prodctID rangeOfString:@"coin"].location != NSNotFound) {
+        //购买的金币
+        NSString *numberStr = [[prodctID componentsSeparatedByString:@"coin"] lastObject];
+        NSInteger coins = [numberStr integerValue];
+        NSInteger cur = [[NSUserDefaults standardUserDefaults] integerForKey:@"coincount"];
+        [[NSUserDefaults standardUserDefaults] setInteger:cur + coins forKey:@"coincount"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    } else {
+        //购买去广告
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"noiad"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"noiad" object:nil];
+        [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:kCountActiveKey];
+    }
+}
+
 - (void)failedTransaction:(SKPaymentTransaction *)transaction {
     if(transaction.error.code != SKErrorPaymentCancelled) {
-        NSLog(@"购买失败 %d", transaction.error.code);
+        NSLog(@"%@ 购买失败 %@", transaction.payment.productIdentifier,transaction.error);
     } else {
         NSLog(@"用户取消交易");
     }
     [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
 }
+
 - (void)restoreTransaction:(SKPaymentTransaction *)transaction {
     // 对于已购商品，处理恢复购买的逻辑
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"noiad"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"noiad" object:nil];
-    [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+    NSString * productIdentifier = transaction.payment.productIdentifier;
+    [self finishPayProductID:productIdentifier];
+    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

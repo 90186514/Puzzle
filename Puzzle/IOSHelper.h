@@ -13,6 +13,9 @@
 
 
 + (id)shareInterface;
-+(void)buyNoIad;
++ (void)buyNoIad;
+- (void)payProductID:(NSString *)proID;
+
+
 
 @end
