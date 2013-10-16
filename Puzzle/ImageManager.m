@@ -127,7 +127,7 @@ static ImageManager *userInterface = nil;
         //Download the tile image
         NSDictionary *tileItem = [self.serverTileImagesArray objectAtIndex:i];
         NSString *name = [tileItem objectForKey:@"path"];
-        NSString *tileUrl = [NSString stringWithFormat:@"%@/download.php?filename=%@_tile.jpg", domin, name];
+        NSString *tileUrl = [NSString stringWithFormat:@"%@/download.php?filename=%@&suffix=_tile.jpg", domin, name];
         ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:tileUrl]];
         NSString *desPath = [self tilePathForPrefix:name];
         [request setDownloadDestinationPath:desPath];
@@ -140,7 +140,7 @@ static ImageManager *userInterface = nil;
 - (void)loadBigImageWithPrefix:(NSString *)prefix
 {
     [[HudController shareHudController] showWithLabel:@"Loading..."];
-    NSString *tileUrl = [NSString stringWithFormat:@"%@/download.php?filename=%@.jpg", domin, prefix];
+    NSString *tileUrl = [NSString stringWithFormat:@"%@/download.php?filename=%@&suffix=.jpg", domin, prefix];
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:tileUrl]];
     NSString *desPath = [self bigPicPathForPrefix:prefix];
     [request setDownloadDestinationPath:desPath];
@@ -186,6 +186,7 @@ static ImageManager *userInterface = nil;
 - (void)loadBigDidFinish:(ASIHTTPRequest *)request
 {
     [[HudController shareHudController] hudWasHidden];
+    NSLog(@"%s->%@", __FUNCTION__, [request responseString]);
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotiNameDidLoadBigImage object:nil];
 }
 
