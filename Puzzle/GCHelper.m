@@ -71,7 +71,7 @@ static GCHelper *helperInterface = nil;
 
 - (void)reportTopLevelScore:(int64_t)score
 {
-    [self reportScore:score forCategory:@"puzzle.toplevel"];
+    [self reportScore:score forCategory:@"puzzlepro.toplevel"];
 }
 
 - (void)reportScore:(int64_t)score forCategory: (NSString*)category

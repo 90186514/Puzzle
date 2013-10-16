@@ -20,7 +20,7 @@
 		<string>Icon-72@2x.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.halloworld.puzzle</string>
+	<string>com.halloworld.puzzlePro</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
