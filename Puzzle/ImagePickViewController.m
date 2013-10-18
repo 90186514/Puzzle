@@ -50,6 +50,8 @@
     } else {
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"GoldBack.jpg"]];
     }
+    [_diyButton setTitle:NSLocalizedString(@"diy", nil) forState:UIControlStateNormal];
+    [_moreButton setTitle:NSLocalizedString(@"more", nil) forState:UIControlStateNormal];
 }
 
 - (void)viewWillAppear:(BOOL)animated
