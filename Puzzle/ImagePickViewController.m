@@ -148,6 +148,12 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *img = [info objectForKey:UIImagePickerControllerOriginalImage];    //调整照片方向
+    if (img.size.width < 720 || img.size.height < 720) {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"imageSizeToSmall", nil) message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        return ;
+    }
     UIImage *fixOriImage = [self fixOrientation:img];
     ImageCutterView *cutter = [[ImageCutterView alloc] initWithFrame:self.view.bounds];
     [cutter setImage:fixOriImage];
