@@ -95,7 +95,7 @@ static GCHelper *helperInterface = nil;
 
 - (void)showBanner
 {
-    [GKNotificationBanner showBannerWithTitle:@"Congratulations" message:@"You have got a new top level!"
+    [GKNotificationBanner showBannerWithTitle:NSLocalizedString(@"topLevelCongratulations", nil) message:NSLocalizedString(@"newTopLevel", nil)
                             completionHandler:^{
                                 NSLog(@"%s -> ", __FUNCTION__);
                             }];

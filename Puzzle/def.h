@@ -27,5 +27,7 @@
 #define kNotiNameDidLoadTileImage @"kNotiNameDidLoadTileImage"
 #define kNotiNameDidLoadBigImage @"kNotiNameDidLoadBigImage"
 
+#define kNotiNameNeedMoreCoin @"kNotiNameNeedMoreCoin"
+#define kNotiNameBuyCoinOver @"kNotiNameBuyCoinOver"
 
 #endif

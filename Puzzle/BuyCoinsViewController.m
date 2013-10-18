@@ -77,7 +77,8 @@
     if (!cell) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(210, 7, 90, 30.0);
+        float x = (isPad) ? 630 : 210;
+        button.frame = CGRectMake(x, 7, 90, 30.0);
         [button setBackgroundImage:[UIImage imageNamed:@"btnPlay"] forState:UIControlStateNormal];
         button.tag = 107;
         [button addTarget:self action:@selector(btnBuyCoinTap:) forControlEvents:UIControlEventTouchUpInside];
@@ -91,7 +92,7 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

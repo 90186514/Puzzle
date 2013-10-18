@@ -78,6 +78,12 @@
     CGRect cutRect = CGRectOffset([maskView cropRect], offset.x, offset.y);
     CGPoint ori = imageView.frame.origin;
     cutRect = CGRectOffset(cutRect, -ori.x, -ori.y);
+    if (!isPad) {
+        CGPoint ori = cutRect.origin;
+        CGSize size = cutRect.size;
+        float scale = 720.0 / 300;
+        cutRect = CGRectMake(ori.x * scale, ori.y * scale, size.width * scale, size.height * scale);
+    }
     return cutRect;
 }
 
@@ -124,8 +130,8 @@
 
 - (void)layoutUpdate
 {
-    CGFloat width = imageCutting.size.width;
-    CGFloat height = imageCutting.size.height;
+    CGFloat width = imageCutting.size.width * (300 / 720.0);
+    CGFloat height = imageCutting.size.height * (300 / 720.0);
     
     CGSize ms = (isPad) ? CutterSizePad : CutterSize;
     imageScrollView.contentSize = CGSizeMake(width + (self.bounds.size.width - ms.width), height + (self.bounds.size.height - ms.height));

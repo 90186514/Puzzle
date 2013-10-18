@@ -7,6 +7,7 @@
 //
 
 #import "IOSHelper.h"
+#import "def.h"
 
 //针对pro
 #define kBoolIsPuzzlePro 1
@@ -122,6 +123,11 @@ static IOSHelper *helperInterface = nil;
         NSInteger cur = [[NSUserDefaults standardUserDefaults] integerForKey:@"coincount"];
         [[NSUserDefaults standardUserDefaults] setInteger:cur + coins forKey:@"coincount"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotiNameBuyCoinOver object:nil];
+        
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Congratulations", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+        [alert show];
+        [alert release];
     } else {
         //购买去广告
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"noiad"];

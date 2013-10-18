@@ -8,6 +8,7 @@
 
 #import "DownloadCell.h"
 #import "ImageManager.h"
+#import "def.h"
 
 @implementation DownloadCell
 
@@ -29,6 +30,7 @@
 
 - (void)dealloc
 {
+    self.dataDic = nil;
     self.imagePrefix = nil;
     self.itemImageView = nil;
     self.donwButton = nil;
@@ -64,12 +66,31 @@
 - (IBAction)btnDownloadTap:(id)sender
 {
     //Down load big pics
-    [[ImageManager shareInterface] loadBigImageWithPrefix:self.imagePrefix];
+    if ([[_dataDic objectForKey:@"categaryid"] integerValue] == 1) {
+        [[ImageManager shareInterface] loadBigImageWithDataDic:_dataDic];
+    } else {
+        NSInteger count = [[NSUserDefaults standardUserDefaults] integerForKey:@"coincount"];
+        if (count >= 10) {
+            [[ImageManager shareInterface] loadBigImageWithDataDic:_dataDic];
+        } else {
+            //金币太少了，提醒购买
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"needMoreCoin", nil) message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"BuyIt", nil), nil];
+            [alert show];
+            [alert release];
+        }
+    }
 }
 
 - (void)showPayStyle
 {
     [_donwButton setTitle:NSLocalizedString(@"cost10coin", nil) forState:UIControlStateNormal];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotiNameNeedMoreCoin object:nil];
+    }
 }
 
 @end

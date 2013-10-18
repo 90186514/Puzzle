@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DownloadCell : UITableViewCell
+@interface DownloadCell : UITableViewCell <UIAlertViewDelegate>
 {
     BOOL hasFinishLoad;
 }
@@ -17,6 +17,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *donwButton;
 @property (nonatomic, retain) IBOutlet UILabel *favLabel;
 @property (nonatomic, retain) NSString *imagePrefix;
+@property (nonatomic, retain) NSDictionary *dataDic;
 
 - (void)resetViewImagePrefix:(NSString *)prefix;
 - (IBAction)btnDownloadTap:(id)sender;

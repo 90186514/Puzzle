@@ -43,3 +43,8 @@
 
 "currentCoinTitle" = "You have got %d coins.";
 "cost10coin" = "10 Coins";
+"needMoreCoin" = "You need buy more coins.";
+"BuyIt" = "Buy It";
+"Congratulations" = "Congratulations";
+"topLevelCongratulations" = "Congratulations";
+"newTopLevel" = "You have got a new top level!";

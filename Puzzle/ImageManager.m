@@ -137,6 +137,21 @@ static ImageManager *userInterface = nil;
     [tileQueue go];
 }
 
+- (void)loadBigImageWithDataDic:(NSDictionary *)dic
+{
+    NSString *prefix = [dic objectForKey:@"path"];
+    [[HudController shareHudController] showWithLabel:@"Loading..."];
+    NSString *tileUrl = [NSString stringWithFormat:@"%@/download.php?filename=%@&suffix=.jpg", domin, prefix];
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:tileUrl]];
+    NSString *desPath = [self bigPicPathForPrefix:prefix];
+    [request setDownloadDestinationPath:desPath];
+    [request setUserInfo:dic];
+    [request setDelegate:self];
+    [request setDidFinishSelector:@selector(loadBigDidFinish:)];
+    [request setDidFailSelector:@selector(loadBigDidFail:)];
+    [request startAsynchronous];
+}
+
 - (void)loadBigImageWithPrefix:(NSString *)prefix
 {
     [[HudController shareHudController] showWithLabel:@"Loading..."];
@@ -158,7 +173,6 @@ static ImageManager *userInterface = nil;
     [BWStatusBarOverlay showErrorWithMessage:NSLocalizedString(@"NetworkErrorMessage", nil) duration:2.0 animated:YES];
     NSString *tilePath = [self tilePathForPrefix:[[request userInfo] objectForKey:@"path"]];
     [[NSFileManager defaultManager] removeItemAtPath:tilePath error:nil];
-    NSLog(@"%s -> %@", __FUNCTION__, [request userInfo]);
 }
 
 - (void)tileRequestDidFinish:(ASIHTTPRequest *)request
@@ -186,7 +200,11 @@ static ImageManager *userInterface = nil;
 - (void)loadBigDidFinish:(ASIHTTPRequest *)request
 {
     [[HudController shareHudController] hudWasHidden];
-    NSLog(@"%s->%@", __FUNCTION__, [request responseString]);
+    if ([[[request userInfo] objectForKey:@"categaryid"] integerValue] != 1) {
+        NSInteger cur = [[NSUserDefaults standardUserDefaults] integerForKey:@"coincount"];
+        [[NSUserDefaults standardUserDefaults] setInteger:cur -10 forKey:@"coincount"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotiNameDidLoadBigImage object:nil];
 }
 

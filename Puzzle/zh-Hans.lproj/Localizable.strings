@@ -40,3 +40,8 @@
 
 "currentCoinTitle" = "你有%d金币";
 "cost10coin" = "10金币";
+"needMoreCoin" = "你需要购买更多的金币";
+"BuyIt" = "买嘛";
+"Congratulations" = "恭喜发财！！";
+"topLevelCongratulations" = "恭喜！恭喜！！";
+"newTopLevel" = "又创新高！离100关又近了一步~";

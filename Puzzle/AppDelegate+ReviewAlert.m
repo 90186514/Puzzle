@@ -35,7 +35,7 @@
     count ++;
     [[NSUserDefaults standardUserDefaults] setInteger:count forKey:kCountActiveKey];
     if ((count != 0 && (count % kCountActiveAlertWouldShow == 0)) || count == 3) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"This dialog box will never show if you finish one of the things below. Your support is my biggest power!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Buy It", @"Share on Weibo", @"Share on Twitter", @"Review", nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"This dialog box will never show if you finish one of the things below. Your support is my biggest power!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Buy It", @"Share on Weibo", @"Share on Twitter", nil];
         [alert show];
         [alert release];
     }

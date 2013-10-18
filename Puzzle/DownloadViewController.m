@@ -9,7 +9,7 @@
 #import "DownloadViewController.h"
 #import "def.h"
 #import "DownloadCell.h"
-
+#import "BuyCoinsViewController.h"
 
 @interface DownloadViewController ()
 
@@ -29,6 +29,8 @@
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadTileImage:) name:kNotiNameDidLoadTileImage object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadBigImage:) name:kNotiNameDidLoadBigImage object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(needBuyMoreCoin:) name:kNotiNameNeedMoreCoin object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(buyMoreCoinOver:) name:kNotiNameBuyCoinOver object:nil];
     }
     return self;
 }
@@ -80,6 +82,11 @@
 
 #pragma mark - Table View
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 30.0;
+}
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSInteger count = [[NSUserDefaults standardUserDefaults] integerForKey:@"coincount"];
@@ -113,6 +120,7 @@
     NSDictionary *dataDic = [[[ImageManager shareInterface] localTileImagesArray] objectAtIndex:indexPath.row];
     NSString *tilename = [dataDic objectForKey:@"path"];
     [cell resetViewImagePrefix:tilename];
+    [cell setDataDic:dataDic];
     [cell setFavour:[dataDic objectForKey:@"favour"]];
     if ([[dataDic objectForKey:@"categaryid"] integerValue] != 1) {
         //不是免费的图片
@@ -135,5 +143,18 @@
 {//下载一个大图片完成后
     [self.photoTable reloadData];
 }
+
+- (void)needBuyMoreCoin:(NSNotification *)noti
+{
+    BuyCoinsViewController *buy = [[BuyCoinsViewController alloc] init];
+    [self.navigationController pushViewController:buy animated:YES];
+    [buy release];
+}
+
+- (void)buyMoreCoinOver:(NSNotification *)noti
+{
+    [self.photoTable reloadData];
+}
+
 
 @end

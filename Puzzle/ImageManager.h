@@ -31,5 +31,6 @@
 - (NSString *)bigPicPathForPrefix:(NSString *)name;
 
 - (void)loadBigImageWithPrefix:(NSString *)prefix;
+- (void)loadBigImageWithDataDic:(NSDictionary *)dic;
 
 @end
