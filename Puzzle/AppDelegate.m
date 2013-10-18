@@ -12,6 +12,7 @@
 #import "def.h"
 #import "BWStatusBarOverlay.h"
 #import "AppDelegate+ReviewAlert.h"
+#import "AppDelegate+LocalNotification.h"
 #import "GCHelper.h"
 
 @implementation AppDelegate
@@ -44,6 +45,7 @@
     
     return YES;
 }
+
 
 - (void)copyFreeToDoc
 {
@@ -78,6 +80,7 @@
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [self scheduleAlert];
+    [self addNewLocalNotification];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

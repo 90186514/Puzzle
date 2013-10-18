@@ -14,6 +14,9 @@
 
 #import "UIImage+Expand.h"
 
+#import "ASIFormDataRequest.h"
+#import "BWStatusBarOverlay.h"
+#import "HudController.h"
 #define kFloatPicWidth 70.0         //tile Image width
 
 #define kFloatPicWidthPad 70.0
@@ -144,9 +147,10 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    UIImage *img = [info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImage *img = [info objectForKey:UIImagePickerControllerOriginalImage];    //调整照片方向
+    UIImage *fixOriImage = [self fixOrientation:img];
     ImageCutterView *cutter = [[ImageCutterView alloc] initWithFrame:self.view.bounds];
-    [cutter setImage:img];
+    [cutter setImage:fixOriImage];
     cutter.delegate = self;
     [self.view addSubview:cutter];
     [cutter release];
@@ -172,10 +176,46 @@
 
 - (void)imageCutterView:(ImageCutterView *)cutter savePlayWithImage:(UIImage *)img
 {
-    //直接开始游戏
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotiNameDidPickerImageToPlay object:img];
-    [self saveToDocImage:img];
-    [self dismissModalViewControllerAnimated:YES];
+    //保存+分享
+    [self saveAndShareImage:img];
+    [cutter removeFromSuperview];
+    [self layoutPicsShow];
+}
+
+- (void)saveAndShareImage:(UIImage *)img
+{
+    NSData *data = UIImageJPEGRepresentation(img, 1.0);
+    NSString *prefix = [[NSDate date] description];
+    NSString *name = [prefix stringByAppendingFormat:@".jpg"];
+    NSString *tileName = [prefix stringByAppendingFormat:@"_tile.jpg"];
+    [data writeToFile:[NSString stringWithFormat:@"%@/Documents/%@", NSHomeDirectory(), name] atomically:YES];
+    
+    UIImage *tileImage = [img imageByScalingToSize:CGSizeMake(kFloatPicWidth, kFloatPicWidth)];     //size(70.0, 70.0)
+    NSData *tileData = UIImageJPEGRepresentation(tileImage, 1.0);
+    [tileData writeToFile:[NSString stringWithFormat:@"%@/Documents/%@", NSHomeDirectory(), tileName] atomically:YES];
+    
+    //Post to the server
+    [[HudController shareHudController] showWithLabel:@"Loading.."];
+    NSString *urlString = [NSString stringWithFormat:@"%@/upload.php", domin];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [request addPostValue:@"1" forKey:@"categary"];
+    [request addData:data withFileName:@"photo.jpg" andContentType:@"image/jpeg" forKey:@"photo"];
+    [request addData:tileData withFileName:@"photo_tile.jpg" andContentType:@"image/jpeg" forKey:@"photo_tile"];
+    [request setDelegate:self];
+    [request setDidFinishSelector:@selector(postImageDidFinish:)];
+    [request setDidFailSelector:@selector(postImageDidFail:)];
+    [request startAsynchronous];
+}
+
+- (void)postImageDidFinish:(ASIFormDataRequest *)request
+{
+    [[HudController shareHudController] hudWasHidden];
+}
+
+- (void)postImageDidFail:(ASIFormDataRequest *)request
+{
+    [BWStatusBarOverlay showSuccessWithMessage:NSLocalizedString(@"shareFail", nil) duration:2.0 animated:YES];
+    [[HudController shareHudController] hudWasHidden];
 }
 
 - (void)saveToDocImage:(UIImage *)img
@@ -247,5 +287,80 @@
     return cell;
 }
 
-
+- (UIImage *)fixOrientation:(UIImage *)aImage {
+    
+    // No-op if the orientation is already correct
+    if (aImage.imageOrientation == UIImageOrientationUp)
+        return aImage;
+    
+    // We need to calculate the proper transformation to make the image upright.
+    // We do it in 2 steps: Rotate if Left/Right/Down, and then flip if Mirrored.
+    CGAffineTransform transform = CGAffineTransformIdentity;
+    
+    switch (aImage.imageOrientation) {
+        case UIImageOrientationDown:
+        case UIImageOrientationDownMirrored:
+            transform = CGAffineTransformTranslate(transform, aImage.size.width, aImage.size.height);
+            transform = CGAffineTransformRotate(transform, M_PI);
+            break;
+            
+        case UIImageOrientationLeft:
+        case UIImageOrientationLeftMirrored:
+            transform = CGAffineTransformTranslate(transform, aImage.size.width, 0);
+            transform = CGAffineTransformRotate(transform, M_PI_2);
+            break;
+            
+        case UIImageOrientationRight:
+        case UIImageOrientationRightMirrored:
+            transform = CGAffineTransformTranslate(transform, 0, aImage.size.height);
+            transform = CGAffineTransformRotate(transform, -M_PI_2);
+            break;
+        default:
+            break;
+    }
+    
+    switch (aImage.imageOrientation) {
+        case UIImageOrientationUpMirrored:
+        case UIImageOrientationDownMirrored:
+            transform = CGAffineTransformTranslate(transform, aImage.size.width, 0);
+            transform = CGAffineTransformScale(transform, -1, 1);
+            break;
+            
+        case UIImageOrientationLeftMirrored:
+        case UIImageOrientationRightMirrored:
+            transform = CGAffineTransformTranslate(transform, aImage.size.height, 0);
+            transform = CGAffineTransformScale(transform, -1, 1);
+            break;
+        default:
+            break;
+    }
+    
+    // Now we draw the underlying CGImage into a new context, applying the transform
+    // calculated above.
+    CGContextRef ctx = CGBitmapContextCreate(NULL, aImage.size.width, aImage.size.height,
+                                             CGImageGetBitsPerComponent(aImage.CGImage), 0,
+                                             CGImageGetColorSpace(aImage.CGImage),
+                                             CGImageGetBitmapInfo(aImage.CGImage));
+    CGContextConcatCTM(ctx, transform);
+    switch (aImage.imageOrientation) {
+        case UIImageOrientationLeft:
+        case UIImageOrientationLeftMirrored:
+        case UIImageOrientationRight:
+        case UIImageOrientationRightMirrored:
+            // Grr...
+            CGContextDrawImage(ctx, CGRectMake(0,0,aImage.size.height,aImage.size.width), aImage.CGImage);
+            break;
+            
+        default:
+            CGContextDrawImage(ctx, CGRectMake(0,0,aImage.size.width,aImage.size.height), aImage.CGImage);
+            break;
+    }
+    
+    // And now we just create a new UIImage from the drawing context
+    CGImageRef cgimg = CGBitmapContextCreateImage(ctx);
+    UIImage *img = [UIImage imageWithCGImage:cgimg];
+    CGContextRelease(ctx);
+    CGImageRelease(cgimg);
+    return img;
+}
 @end

@@ -13,7 +13,7 @@
 "levelFaild" = "闯关失败，倒退两关~";
 "Play" = "游戏";
 "Save" = "保存";
-"Save & Play" = "保存&游戏";
+"Save & Play" = "保存&分享";
 "Cancel" = "取消";
 "restart" = "您想重新选择图片并开始游戏么？";
 "Retry" = "重试";
@@ -45,3 +45,4 @@
 "Congratulations" = "恭喜发财！！";
 "topLevelCongratulations" = "恭喜！恭喜！！";
 "newTopLevel" = "又创新高！离100关又近了一步~";
+"localNotification" = "又有新的图片喽喔，快来玩吧!";

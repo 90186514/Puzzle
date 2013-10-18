@@ -13,7 +13,7 @@
 "levelFaild" = "Faild! Drop 2 levels!";
 "Play" = "Play";
 "Save" = "Save";
-"Save & Play" = "Save & Play";
+"Save & Play" = "Save & Share";
 "Cancel" = "Cancel";
 "restart" = "Do you want replay with a new picture?";
 "Retry" = "Retry";
@@ -48,3 +48,4 @@
 "Congratulations" = "Congratulations";
 "topLevelCongratulations" = "Congratulations";
 "newTopLevel" = "You have got a new top level!";
+"localNotification" = "New pictures updated. Just play it!";

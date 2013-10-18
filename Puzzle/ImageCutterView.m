@@ -8,7 +8,7 @@
 
 #import "ImageCutterView.h"
 #import "def.h"
-
+#import "UIImage+Expand.h"
 
 @implementation ImageCutterView
 
@@ -130,8 +130,8 @@
 
 - (void)layoutUpdate
 {
-    CGFloat width = imageCutting.size.width * (300 / 720.0);
-    CGFloat height = imageCutting.size.height * (300 / 720.0);
+    CGFloat width = imageCutting.size.width * ((isPad) ? 1 : (300 / 720.0));
+    CGFloat height = imageCutting.size.height * ((isPad) ? 1 : (300 / 720.0));
     
     CGSize ms = (isPad) ? CutterSizePad : CutterSize;
     imageScrollView.contentSize = CGSizeMake(width + (self.bounds.size.width - ms.width), height + (self.bounds.size.height - ms.height));
@@ -144,7 +144,7 @@
 {
     CGRect cutRect = [self cuttingRect];
     CGImageRef cuttedImage = CGImageCreateWithImageInRect(imageCutting.CGImage, cutRect);
-    UIImage *img = [UIImage imageWithCGImage:cuttedImage];
+    UIImage *img = [UIImage imageWithCGImage:cuttedImage scale:1.0 orientation:UIImageOrientationUp];
     return img;
 }
 /*
