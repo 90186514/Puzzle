@@ -13,6 +13,7 @@
 - (void)addNewLocalNotification
 {
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     UILocalNotification *newNotification = [[UILocalNotification alloc] init];
     
     if (newNotification) {
@@ -22,6 +23,7 @@
         newNotification.soundName = UILocalNotificationDefaultSoundName;
         newNotification.repeatInterval = NSDayCalendarUnit;
         newNotification.alertAction = @"OK";
+        newNotification.applicationIconBadgeNumber = 1;
         [[UIApplication sharedApplication] scheduleLocalNotification:newNotification];
     }
     [newNotification release];
