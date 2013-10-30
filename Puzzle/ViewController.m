@@ -14,7 +14,7 @@
 #import "BWStatusBarOverlay.h"
 #import "GCHelper.h"
 
-#define MY_BANNER_UNIT_ID @"a15226a086af1c9"    //admob
+#define MY_BANNER_UNIT_ID @"a151ff3b64d2b1b"    //admob-  a15226a086af1c9
 
 #define playableMaxSeconds 33
 
@@ -87,7 +87,7 @@
 {
     [super viewDidAppear:animated];
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"noiad"]) {
-//        [self loadAdmobView];
+        [self loadAdmobView];
     } else {
         btnBut.hidden = YES;
     }
