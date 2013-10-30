@@ -30,6 +30,8 @@
 
 - (void)dealloc
 {
+    self.deleteButton = nil;
+    self.shareNoteLabel = nil;
     self.dataDic = nil;
     self.imagePrefix = nil;
     self.itemImageView = nil;
@@ -79,6 +81,11 @@
             [alert release];
         }
     }
+}
+
+- (IBAction)btnDeleteTap:(id)sender
+{
+    [[ImageManager shareInterface] deleteImageWithDataDic:_dataDic];
 }
 
 - (void)showPayStyle

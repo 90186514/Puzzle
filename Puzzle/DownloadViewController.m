@@ -10,6 +10,10 @@
 #import "def.h"
 #import "DownloadCell.h"
 #import "BuyCoinsViewController.h"
+#import <QuartzCore/QuartzCore.h>
+
+#define ifGunDebug 0
+
 
 @interface DownloadViewController ()
 
@@ -54,6 +58,9 @@
     } else {
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"GreenBack.jpg"]];
     }
+    
+    [hottestBtn setTitle:NSLocalizedString(@"Hottest", nil) forState:UIControlStateNormal];
+    [latestBtn setTitle:NSLocalizedString(@"Latest", nil) forState:UIControlStateNormal];
 }
 
 - (void)btnBackTap:(id)sender
@@ -122,9 +129,16 @@
     [cell resetViewImagePrefix:tilename];
     [cell setDataDic:dataDic];
     [cell setFavour:[dataDic objectForKey:@"favour"]];
+    if (ifGunDebug) {
+        //显示照片id
+        [cell.deleteButton setHidden:NO];
+    }
     if ([[dataDic objectForKey:@"categaryid"] integerValue] != 1) {
         //不是免费的图片
         [cell showPayStyle];
+    }
+    if ([[dataDic objectForKey:@"userid"] integerValue] != 1) {
+        [cell.shareNoteLabel setText:NSLocalizedString(@"shareByOther", nil)];
     }
     return cell;
 }
@@ -154,6 +168,51 @@
 - (void)buyMoreCoinOver:(NSNotification *)noti
 {
     [self.photoTable reloadData];
+}
+
+- (IBAction)hottestButtonAction
+{
+    [hottestBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];//此时选中
+    [latestBtn setTitleColor:[UIColor colorWithRed:(220/255.0) green:(220/255.0) blue:(220/255.0) alpha:1] forState:UIControlStateNormal];//此时未被选中
+    [UIView beginAnimations:nil context:nil];//动画开始
+    [UIView setAnimationDuration:0.3];
+    if (isPad) {
+        indView.frame = CGRectMake(0, 42, 384, 6);
+    } else {
+        indView.frame = CGRectMake(0, 38, 160, 6);
+    }
+    [UIView commitAnimations];
+    
+    [[ImageManager shareInterface] hottestSortedLocalTileImageArray];
+    
+    CATransition *ani = [CATransition animation];
+    ani.type = kCATransitionPush;
+    ani.subtype = kCATransitionFromLeft;
+    [self.photoTable reloadData];
+    [self.photoTable.layer addAnimation:ani forKey:@"move"];
+}
+
+- (IBAction)latestButtonAction
+{
+    [latestBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];//此时选中
+    [hottestBtn setTitleColor:[UIColor colorWithRed:(220/255.0) green:(220/255.0) blue:(220/255.0) alpha:1] forState:UIControlStateNormal];//此时未被选中
+    
+    [UIView beginAnimations:nil context:nil];//动画开始
+    [UIView setAnimationDuration:0.3];
+    if (isPad) {
+        indView.frame = CGRectMake(384, 42, 384, 6);
+    } else {
+        indView.frame = CGRectMake(160, 38, 160, 6);
+    }
+    [UIView commitAnimations];
+    
+    [[ImageManager shareInterface] latestSortedLocalTileImageArray];
+    
+    CATransition *ani = [CATransition animation];
+    ani.type = kCATransitionPush;
+    ani.subtype = kCATransitionFromRight;
+    [self.photoTable reloadData];
+    [self.photoTable.layer addAnimation:ani forKey:@"move"];
 }
 
 

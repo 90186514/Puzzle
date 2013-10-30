@@ -12,6 +12,11 @@
 #import "HudController.h"
 
 @interface DownloadViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+{
+    IBOutlet UIButton *hottestBtn;
+    IBOutlet UIButton *latestBtn;
+    IBOutlet UIView *indView;
+}
 
 @property (nonatomic, retain) NSArray *photoListArray;
 

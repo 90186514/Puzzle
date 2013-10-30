@@ -18,6 +18,8 @@
 @property (nonatomic, retain) IBOutlet UILabel *favLabel;
 @property (nonatomic, retain) NSString *imagePrefix;
 @property (nonatomic, retain) NSDictionary *dataDic;
+@property (nonatomic, retain) IBOutlet UIButton *deleteButton;
+@property (nonatomic, retain) IBOutlet UILabel *shareNoteLabel;
 
 - (void)resetViewImagePrefix:(NSString *)prefix;
 - (IBAction)btnDownloadTap:(id)sender;

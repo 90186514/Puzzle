@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSMutableArray *imagePrefixsArray;
 @property (nonatomic, retain) IBOutlet UIButton *diyButton;
 @property (nonatomic, retain) IBOutlet UIButton *moreButton;
+@property (nonatomic, retain) IBOutlet UILabel *longTapNotiLabel;
 
 @property (nonatomic, retain) UIPopoverController *mypopoverController;
 

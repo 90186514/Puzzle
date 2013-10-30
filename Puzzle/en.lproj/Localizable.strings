@@ -52,3 +52,7 @@
 "imageSizeToSmall" = "The picture size is to small, rechoose please!";
 "diy" = "Album";
 "more" = "More..";
+"shareByOther" = "User Shared";
+"Hottest" = "Hottest";
+"Latest" = "Latest";
+"longTapNotiLabel" = "Long Tap To Delete Picture!";

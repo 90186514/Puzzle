@@ -189,8 +189,8 @@
 {
     NSArray *photolist = [[request responseString] objectFromJSONString];
     NSArray *sortedList = [photolist sortedArrayWithOptions:NSSortStable usingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSInteger photoid1 = [[(NSDictionary *)obj1 objectForKey:@"photoid"] integerValue];
-        NSInteger photoid2 = [[(NSDictionary *)obj2 objectForKey:@"photoid"] integerValue];
+        NSInteger photoid1 = [[(NSDictionary *)obj1 objectForKey:@"favour"] integerValue];
+        NSInteger photoid2 = [[(NSDictionary *)obj2 objectForKey:@"favour"] integerValue];
         return photoid1 < photoid2;
     }];
     DownloadViewController *down = [[DownloadViewController alloc] initWithPhotoList:sortedList];

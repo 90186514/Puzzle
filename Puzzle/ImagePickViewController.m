@@ -25,6 +25,7 @@
 #define kCountTilesOneLine 4
 #define kTagCellTileRoot 101
 
+#define kCountActiveKey @"kCountActiveKey"
 
 @implementation ImagePickViewController
 
@@ -52,6 +53,10 @@
     }
     [_diyButton setTitle:NSLocalizedString(@"diy", nil) forState:UIControlStateNormal];
     [_moreButton setTitle:NSLocalizedString(@"more", nil) forState:UIControlStateNormal];
+    [_longTapNotiLabel setText:NSLocalizedString(@"longTapNotiLabel", nil)];
+    if ([[NSUserDefaults standardUserDefaults] integerForKey:kCountActiveKey] > 35) {
+        _longTapNotiLabel.hidden = YES;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -194,6 +199,7 @@
 {
     NSData *data = UIImageJPEGRepresentation(img, 1.0);
     NSString *prefix = [[NSDate date] description];
+    NSLog(@"%s -> %@", __FUNCTION__, prefix);
     NSString *name = [prefix stringByAppendingFormat:@".jpg"];
     NSString *tileName = [prefix stringByAppendingFormat:@"_tile.jpg"];
     [data writeToFile:[NSString stringWithFormat:@"%@/Documents/%@", NSHomeDirectory(), name] atomically:YES];
@@ -212,12 +218,31 @@
     [request setDelegate:self];
     [request setDidFinishSelector:@selector(postImageDidFinish:)];
     [request setDidFailSelector:@selector(postImageDidFail:)];
+    [request setUserInfo:[NSDictionary dictionaryWithObject:prefix forKey:@"prefix"]];
     [request startAsynchronous];
 }
 
 - (void)postImageDidFinish:(ASIFormDataRequest *)request
 {
     [[HudController shareHudController] hudWasHidden];
+    NSString *serverPrefix = [request responseString];
+    NSString *localPrefix = [[request userInfo] objectForKey:@"prefix"];
+    NSString *name = [localPrefix stringByAppendingFormat:@".jpg"];
+    NSString *tileName = [localPrefix stringByAppendingFormat:@"_tile.jpg"];
+    NSString *path = [NSString stringWithFormat:@"%@/Documents/%@", NSHomeDirectory(), name];
+    NSString *tilePath = [NSString stringWithFormat:@"%@/Documents/%@", NSHomeDirectory(), tileName];
+    
+    NSString *serverName = [serverPrefix stringByAppendingFormat:@".jpg"];
+    NSString *serverTileName = [serverPrefix stringByAppendingFormat:@"_tile.jpg"];
+    NSString *serverpath = [NSString stringWithFormat:@"%@/Documents/%@", NSHomeDirectory(), serverName];
+    NSString *servertilePath = [NSString stringWithFormat:@"%@/Documents/%@", NSHomeDirectory(), serverTileName];
+    
+    NSError *er = nil;
+    [[NSFileManager defaultManager] moveItemAtPath:path toPath:serverpath error:&er];
+    NSAssert(er == nil, [er localizedDescription]);
+    [[NSFileManager defaultManager] moveItemAtPath:tilePath toPath:servertilePath error:&er];
+    NSAssert(er == nil, [er localizedDescription]);
+    [self layoutPicsShow];
 }
 
 - (void)postImageDidFail:(ASIFormDataRequest *)request

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ASIHTTPRequest.h"
+#import "ASIFormDataRequest.h"
 #import "ASINetworkQueue.h"
 
 @interface ImageManager : NSObject
@@ -32,5 +33,9 @@
 
 - (void)loadBigImageWithPrefix:(NSString *)prefix;
 - (void)loadBigImageWithDataDic:(NSDictionary *)dic;
+- (void)deleteImageWithDataDic:(NSDictionary *)dic;
+
+- (void)hottestSortedLocalTileImageArray;
+- (void)latestSortedLocalTileImageArray;
 
 @end

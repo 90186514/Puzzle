@@ -73,6 +73,25 @@ static ImageManager *userInterface = nil;
     [super dealloc];
 }
 
+- (void)hottestSortedLocalTileImageArray
+{
+    NSArray *sortedArray = [self.localTileImagesArray sortedArrayWithOptions:NSSortStable usingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSInteger photoid1 = [[(NSDictionary *)obj1 objectForKey:@"favour"] integerValue];
+        NSInteger photoid2 = [[(NSDictionary *)obj2 objectForKey:@"favour"] integerValue];
+        return photoid1 < photoid2;
+    }];
+    self.localTileImagesArray = [NSMutableArray arrayWithArray:sortedArray];
+}
+- (void)latestSortedLocalTileImageArray
+{
+    NSArray *sortedArray = [self.localTileImagesArray sortedArrayWithOptions:NSSortStable usingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSInteger photoid1 = [[(NSDictionary *)obj1 objectForKey:@"photoid"] integerValue];
+        NSInteger photoid2 = [[(NSDictionary *)obj2 objectForKey:@"photoid"] integerValue];
+        return photoid1 < photoid2;
+    }];
+    self.localTileImagesArray = [NSMutableArray arrayWithArray:sortedArray];
+}
+
 - (NSString *)tilePathForPrefix:(NSString *)name
 {
     return [NSString stringWithFormat:@"%@/Documents/%@_tile.jpg", NSHomeDirectory(), name];
@@ -135,6 +154,19 @@ static ImageManager *userInterface = nil;
         [tileQueue addOperation:request];
     }
     [tileQueue go];
+}
+
+- (void)deleteImageWithDataDic:(NSDictionary *)dic
+{
+    NSLog(@"%s -> %@", __FUNCTION__, dic);
+    NSString *tileUrl = [NSString stringWithFormat:@"%@/removephoto.php", domin];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:tileUrl]];
+    [request setRequestMethod:@"POST"];
+    [request setPostValue:[dic objectForKey:@"path"] forKey:@"path"];
+    [request setDelegate:self];
+    [request setDidFailSelector:@selector(deleteDidFail:)];
+    [request setDidFinishSelector:@selector(deleteDidFinish:)];
+    [request startAsynchronous];
 }
 
 - (void)loadBigImageWithDataDic:(NSDictionary *)dic
@@ -212,6 +244,26 @@ static ImageManager *userInterface = nil;
 {
     [[HudController shareHudController] hudWasHidden];
     [BWStatusBarOverlay showErrorWithMessage:NSLocalizedString(@"NetworkErrorMessage", nil) duration:2.0 animated:YES];
+}
+
+#pragma mark - Delete Request Delegate
+
+- (void)deleteDidFail:(ASIHTTPRequest *)reqeust
+{
+    [self alertMessage:[reqeust responseString]];
+}
+- (void)deleteDidFinish:(ASIHTTPRequest *)reqeust
+{
+    if ([reqeust responseStatusCode] != 200) {
+        [self alertMessage:[reqeust responseString]];
+    }
+}
+
+- (void)alertMessage:(NSString *)str
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:str delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+    [alert release];
 }
 
 @end
