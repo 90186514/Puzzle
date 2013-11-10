@@ -12,7 +12,7 @@
 #import "BuyCoinsViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define ifGunDebug 0
+#define ifGunDebug 1
 
 
 @interface DownloadViewController ()

@@ -813,8 +813,8 @@
 		B299F09117D02BBE008FA9FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Gun Li (A665XQL5F4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Gun Li (A665XQL5F4)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Puzzle/Puzzle-Prefix.pch";
 				INFOPLIST_FILE = "Puzzle/Puzzle-Info.plist";
@@ -825,8 +825,8 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "4893C80A-30B3-4B3E-AFBB-3EDAE9A1C065";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4893C80A-30B3-4B3E-AFBB-3EDAE9A1C065";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
