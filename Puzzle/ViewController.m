@@ -14,7 +14,7 @@
 #import "BWStatusBarOverlay.h"
 #import "GCHelper.h"
 
-#define MY_BANNER_UNIT_ID @"a151ff3b64d2b1b"    //admob-  a15226a086af1c9
+#define MY_BANNER_UNIT_ID @"a15226a086af1c9"    //admob-a1527af25b1d5a0  
 
 #define playableMaxSeconds 33
 
@@ -328,7 +328,7 @@
 // examine the hasAutoRefreshed property of the view.
 - (void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error
 {
-    NSLog(@"%s -> ", __FUNCTION__);
+    NSLog(@"%s -> %@", __FUNCTION__, [error userInfo]);
 }
 
 
