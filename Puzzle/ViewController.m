@@ -14,13 +14,10 @@
 #import "BWStatusBarOverlay.h"
 #import "GCHelper.h"
 
-<<<<<<< HEAD
-#define MY_BANNER_UNIT_ID @"a15226a086af1c9"    //admob-a1527af25b1d5a0  
-=======
+
 //Mj a151ff3b64d2b1b
 //PP a1527af25b1d5a0
 #define MY_BANNER_UNIT_ID @"a1527af25b1d5a0"   
->>>>>>> 8ca53782232f8fa2f5047d500cead912ad13e56a
 
 #define playableMaxSeconds 33
 
